@@ -2,6 +2,7 @@ import { Query } from 'react-apollo'
 import { examById } from '../../apollo/query/exam'
 import CreateExam from './CreateExam'
 import ExamMaker from './ExamMaker'
+import Loading from '../Page/Loading'
 
 export default class Maker extends React.Component {
   state = {
@@ -29,7 +30,7 @@ export default class Maker extends React.Component {
       state: { loading, create }
     } = this
     if (loading) {
-      return <div>loading</div>
+      return <Loading size={50} />
     }
     if (create) {
       return <CreateExam />

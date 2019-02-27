@@ -35,6 +35,7 @@ const Box = styled.div`
   cursor: pointer;
   &:hover {
     outline: 2px solid ${props => props.theme.primary};
+    color: ${props => props.theme.grey[10]};
   }
   svg {
     width: 2rem;

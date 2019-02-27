@@ -6,10 +6,16 @@ import { FormStyles } from './styles/FormStyles'
 import { SubHeading } from './styles/SubHeading'
 import { Center } from './styles/Center'
 import NodeInput from './NodeInput'
+import Type from './Type'
 
 export default ({ id, question }) => (
   <FormStyles>
-    <Center>chiocies/explanation</Center>
+    <Center>
+      <SubHeading>
+        <span>Type</span>
+        <Type question={question} />
+      </SubHeading>
+    </Center>
     <Center>
       <SubHeading>
         <span>Question Nodes</span>
