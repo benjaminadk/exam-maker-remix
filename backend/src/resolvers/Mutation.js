@@ -36,6 +36,19 @@ module.exports = {
     }
   },
 
+  updateExam: async (_, args, ctx, info) => {
+    try {
+      await ctx.prisma.updateExam({
+        where: { id: args.id },
+        data: { ...args.data }
+      })
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   createQuestion: async (_, args, ctx, info) => {
     try {
       await ctx.prisma.updateExam({

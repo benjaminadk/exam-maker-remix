@@ -17,7 +17,7 @@ type Exam {
   code: String @default(value: "")
   pass: Int @default(value: "65")
   time: Int @default(value: "60")
-  image: String @default(value: "0")
+  image: String @default(value: "")
   cover: [CoverNode]
   test: [Question]
   user: User

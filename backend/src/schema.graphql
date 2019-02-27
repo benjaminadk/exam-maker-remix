@@ -10,6 +10,7 @@ type Mutation {
   signin(email: String!, password: String!): Payload
   googleSignin(data: UserCreateInput): Payload
   createExam(data: ExamCreateInput): Exam
+  updateExam(id: ID!, data: ExamUpdateInput): Payload
   createQuestion(id: ID!): Payload
   createNode(id: ID!, type: String): Payload
   updateNode(id: ID!, type: String, variant: Int, text: String): Payload
