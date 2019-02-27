@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BannerTop, BannerTitle } from '../Shared/Banner'
+import isequal from 'lodash.isequal'
 import Editor from './Editor'
 import Controls from './Controls'
 
@@ -24,9 +24,21 @@ export default class ExamMaker extends React.Component {
   }
 
   componentDidMount() {
+    this.setExamState()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!isequal(prevProps.exam, this.props.exam)) {
+      this.setExamState()
+    }
+  }
+
+  setExamState = () => {
     const { id, title, code, pass, time, image, cover, test } = this.props.exam
     this.setState({ id, title, code, pass, time, image, cover, test })
   }
+
+  setModeState = mode => this.setState({ mode })
 
   onChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value })
@@ -42,9 +54,6 @@ export default class ExamMaker extends React.Component {
     } = this
     return (
       <ExamMakerStyles>
-        <BannerTop>
-          <BannerTitle>Exam Editor</BannerTitle>
-        </BannerTop>
         <MainContent>
           <Editor
             mode={mode}
@@ -57,7 +66,13 @@ export default class ExamMaker extends React.Component {
             test={test}
             onChange={this.onChange}
           />
-          <Controls mode={mode} id={id} test={test} onCreateQuestion={this.onCreateQuestion} />
+          <Controls
+            mode={mode}
+            id={id}
+            test={test}
+            setModeState={this.setModeState}
+            onCreateQuestion={this.onCreateQuestion}
+          />
         </MainContent>
       </ExamMakerStyles>
     )

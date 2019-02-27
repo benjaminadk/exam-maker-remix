@@ -1,4 +1,5 @@
 const signToken = require('../middleware/signToken')
+const defaults = require('./defaults')
 
 module.exports = {
   googleSignin: async (_, args, ctx, info) => {
@@ -23,6 +24,9 @@ module.exports = {
     try {
       const exam = await ctx.prisma.createExam({
         ...args.data,
+        cover: {
+          create: defaults.cover
+        },
         user: { connect: { id: ctx.userId } }
       })
       return exam
@@ -34,13 +38,34 @@ module.exports = {
 
   createQuestion: async (_, args, ctx, info) => {
     try {
-      const question = await ctx.prisma.createQuestion({
-        connect: { exam: { id: args.id } }
+      await ctx.prisma.updateExam({
+        where: { id: args.id },
+        data: {
+          test: {
+            create: defaults.question
+          }
+        }
       })
-      return question
+      return { success: true }
     } catch (error) {
       console.log(error)
-      return null
+      return { success: false }
+    }
+  },
+
+  updateNode: async (_, args, ctx, info) => {
+    try {
+      const { id, type, variant, text } = args
+      if (type === 'cover') {
+        await ctx.prisma.updateCoverNode({
+          where: { id },
+          data: { variant, text }
+        })
+      }
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
     }
   }
 }

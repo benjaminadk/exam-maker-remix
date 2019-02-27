@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const InputStyles = styled.div`
   position: relative;
   width: ${props => (props.width ? `${props.width}px` : '200px')};
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   span {
     position: absolute;
     bottom: ${props => (props.focus || props.value ? '2rem' : '.1rem')};

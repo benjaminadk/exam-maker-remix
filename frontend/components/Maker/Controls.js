@@ -23,6 +23,7 @@ const Box = styled.div`
   border: 1px solid ${props => props.theme.grey[5]};
   outline: 2px solid ${props => (props.highlight ? props.theme.primary : 'transparent')};
   color: ${props => props.theme.grey[5]};
+  font: 1.5rem 'Open Sans Light';
   margin-right: 1rem;
   cursor: pointer;
   &:hover {
@@ -35,9 +36,9 @@ const Box = styled.div`
   }
 `
 
-export default ({ mode, id, test, onCreateQuestion }) => (
+export default ({ mode, id, test, setModeState, onCreateQuestion }) => (
   <ControlsStyles>
-    <Box highlight={mode === -1}>
+    <Box highlight={mode === -1} onClick={() => setModeState(-1)}>
       <Tune />
     </Box>
     <Mutation
@@ -52,7 +53,9 @@ export default ({ mode, id, test, onCreateQuestion }) => (
       )}
     </Mutation>
     {test.map((q, i) => (
-      <Box key={q.id}>{i + 1}</Box>
+      <Box key={q.id} onClick={() => setModeState(i)}>
+        {i + 1}
+      </Box>
     ))}
   </ControlsStyles>
 )
