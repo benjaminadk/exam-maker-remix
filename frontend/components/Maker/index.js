@@ -5,7 +5,7 @@ import ExamMaker from './ExamMaker'
 
 export default class Maker extends React.Component {
   state = {
-    create: false
+    create: true
   }
 
   componentDidMount() {
