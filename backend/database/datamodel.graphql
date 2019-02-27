@@ -1,0 +1,64 @@
+type User {
+  id: ID! @unique
+  googleID: String @unique
+  name: String!
+  password: String
+  email: String
+  image: String
+  role: Role! @default(value: "USER")
+  exams: [Exam]
+  createdAt: DateTime!
+}
+
+type Exam {
+  id: ID! @unique
+  public: Boolean! @default(value: "false")
+  title: String!
+  code: String
+  pass: Int
+  time: Int
+  image: String
+  cover: [CoverNode]
+  test: [Question]
+  user: User
+  createdAt: DateTime!
+}
+
+type Question {
+  id: ID! @unique
+  variant: Int! @default(value: "0")
+  question: [QuestionNode]
+  choices: [Choice]
+  answer: [Boolean]
+  explanation: [ExplanationNode]
+}
+
+type CoverNode {
+  id: ID! @unique
+  variant: Int! @default(value: "0")
+  text: String! @default(value: "")
+}
+
+type Choice {
+  id: ID! @unique
+  label: String! @default(value: "A")
+  text: String! @default(value: "")
+}
+
+type QuestionNode {
+  id: ID! @unique
+  variant: Int! @default(value: "0")
+  text: String! @default(value: "")
+}
+
+type ExplanationNode {
+  id: ID! @unique
+  variant: Int! @default(value: "0")
+  text: String! @default(value: "")
+  href: String
+}
+
+enum Role {
+  USER
+  ADMIN
+}

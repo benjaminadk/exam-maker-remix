@@ -1,0 +1,20 @@
+export default [
+  ['public', 'boolean', 'is exam available for public download'],
+  ['author', 'string', 'name/s of exam creator - separate with `,`'],
+  ['title', 'string', 'title of exam'],
+  ['code', 'string', 'certificate granter code'],
+  ['pass', 'number', 'lowest passing score'],
+  ['time', 'number', 'maximum time allowed to complete'],
+  ['image', 'string', 'URL of a logo - use 1:1 for best results'],
+  ['cover', '[Node]', 'first screen of exam'],
+  ['node.variant', 'number', 'type of node: 0 - image, 1 - text, 2 - link'],
+  ['node.text', 'string', 'value of node: 0 - src, 1 - text, 2 - href'],
+  ['test', '[Question]', 'questions that make up exam'],
+  ['question.variant', 'number', 'type of question'],
+  ['question.question', '[Node]', 'content of actual question'],
+  ['question.answer', '[boolean]', 'maps to question choices'],
+  ['question.explanation', '[Node]', 'explains correct answer'],
+  ['question.choices', '[Choice]', 'possible answers'],
+  ['choice.label', 'string', 'label for choice - 1, a, 1a'],
+  ['choice.text', 'string', 'content of choice']
+]

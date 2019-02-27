@@ -1,0 +1,83 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+  me: User
+  exam(id: ID!): Exam
+}
+
+type Mutation {
+  signup(name: String!, email: String!, password: String!): Payload
+  signin(email: String!, password: String!): Payload
+  googleSignin(data: UserCreateInput): Payload
+  createExam(data: ExamCreateInput): Exam
+  createQuestion(id: ID!): Question
+}
+
+type User {
+  id: ID!
+  googleID: String
+  name: String!
+  password: String
+  email: String
+  image: String
+  role: Role!
+  exams: [Exam]
+  createdAt: DateTime!
+}
+
+type Exam {
+  id: ID!
+  public: Boolean!
+  title: String!
+  code: String
+  pass: Int
+  time: Int
+  image: String
+  cover: [CoverNode]
+  test: [Question]
+  user: User
+  createdAt: DateTime!
+}
+
+type Question {
+  id: ID!
+  variant: Int
+  question: [QuestionNode]
+  choices: [Choice]
+  answer: [Boolean]
+  explanation: [ExplanationNode]
+}
+
+type CoverNode {
+  id: ID!
+  variant: Int!
+  text: String!
+}
+
+type Choice {
+  id: ID!
+  label: String!
+  text: String!
+}
+
+type QuestionNode {
+  id: ID!
+  variant: Int!
+  text: String!
+}
+
+type ExplanationNode {
+  id: ID!
+  variant: Int!
+  text: String!
+  href: String
+}
+
+type Payload {
+  success: Boolean
+}
+
+enum Role {
+  USER
+  ADMIN
+}
