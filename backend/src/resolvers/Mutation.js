@@ -73,9 +73,7 @@ module.exports = {
     try {
       const { id, type } = args
       if (type === 'cover') {
-        await ctx.prisma.deleteCoverNode({
-          where: { id }
-        })
+        await ctx.prisma.deleteCoverNode({ id })
       }
       return { success: true }
     } catch (error) {
