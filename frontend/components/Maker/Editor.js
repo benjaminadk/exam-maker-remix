@@ -22,7 +22,7 @@ const SubHeading = styled.div`
 
 const QuestionEdit = styled.div``
 
-export default ({ mode, title, code, time, pass, image, cover, test, onChange }) => {
+export default ({ id, mode, title, code, time, pass, image, cover, test, onChange }) => {
   if (mode === -1) {
     return (
       <Metadata>
@@ -67,7 +67,7 @@ export default ({ mode, title, code, time, pass, image, cover, test, onChange })
         <Center>
           <SubHeading>Cover Nodes</SubHeading>
           {cover.map((n, i) => (
-            <NodeInput key={n.id} type="cover" node={n} />
+            <NodeInput key={n.id} type="cover" id={id} node={n} />
           ))}
         </Center>
       </Metadata>

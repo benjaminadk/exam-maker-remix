@@ -57,6 +57,7 @@ export default class ExamMaker extends React.Component {
         <MainContent>
           <Editor
             mode={mode}
+            id={id}
             title={title}
             code={code}
             time={time}

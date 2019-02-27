@@ -67,5 +67,20 @@ module.exports = {
       console.log(error)
       return { success: false }
     }
+  },
+
+  deleteNode: async (_, args, ctx, info) => {
+    try {
+      const { id, type } = args
+      if (type === 'cover') {
+        await ctx.prisma.deleteCoverNode({
+          where: { id }
+        })
+      }
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
   }
 }

@@ -1,4 +1,9 @@
 import styled from 'styled-components'
+import { Mutation } from 'react-apollo'
+import isequal from 'lodash.isequal'
+import debounce from 'lodash.debounce'
+import { updateNode } from '../../apollo/mutation/updateNode'
+import { examById } from '../../apollo/query/exam'
 import { Image } from 'styled-icons/material/Image'
 import { Title } from 'styled-icons/material/Title'
 import { Delete } from 'styled-icons/material/Delete'
@@ -44,38 +49,85 @@ export default class NodeInput extends React.Component {
   }
 
   componentDidMount() {
+    this.setNodeState()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!isequal(prevProps.node, this.props.node)) {
+      this.setNodeState()
+    }
+  }
+
+  setNodeState = () => {
     const { variant, text } = this.props.node
     this.setState({ variant, text })
   }
 
-  onChange = ({ target: { name, value } }) => {
+  onChange = ({ target: { name, value } }, updateNode) => {
     this.setState({ [name]: value })
+    this.onTextChange(updateNode, value)
   }
+
+  onVariantChange = async (updateNode, variant) => {
+    const {
+      node: { id },
+      type
+    } = this.props
+    await updateNode({
+      variables: { type, id, variant }
+    })
+  }
+
+  onTextChange = debounce(async (updateNode, text) => {
+    const {
+      node: { id },
+      type
+    } = this.props
+    await updateNode({
+      variables: { type, id, text }
+    })
+  }, 5000)
 
   render() {
     const {
+      props: { id },
       state: { variant, text }
     } = this
     return (
       <NodeInputStyles>
-        <div className="variants">
-          <Option highlight={variant === 2}>
-            <Title size={20} />
-          </Option>
-          <Option highlight={variant === 1}>
-            <Title size={13} />
-          </Option>
-          <Option highlight={variant === 0}>
-            <Image size={15} />
-          </Option>
-        </div>
-        <Input
-          width={400}
-          label={variant === 0 ? 'Source URL' : 'Text'}
-          value={text}
-          onChange={this.onChange}
-          inputProps={{ type: 'text', name: 'text', spellCheck: false }}
-        />
+        <Mutation mutation={updateNode} refetchQueries={[{ query: examById, variables: { id } }]}>
+          {(updateNode, { loading }) => (
+            <>
+              <div className="variants">
+                <Option
+                  highlight={variant === 2}
+                  onClick={() => this.onVariantChange(updateNode, 2)}
+                >
+                  <Title size={20} />
+                </Option>
+                <Option
+                  highlight={variant === 1}
+                  onClick={() => this.onVariantChange(updateNode, 1)}
+                >
+                  <Title size={13} />
+                </Option>
+                <Option
+                  highlight={variant === 0}
+                  onClick={() => this.onVariantChange(updateNode, 0)}
+                >
+                  <Image size={15} />
+                </Option>
+              </div>
+              <Input
+                width={400}
+                label={loading ? 'Saving...' : variant === 0 ? 'Source URL' : 'Text'}
+                value={text}
+                onChange={e => this.onChange(e, updateNode)}
+                inputProps={{ type: 'text', name: 'text', spellCheck: false }}
+              />
+            </>
+          )}
+        </Mutation>
         <Delete size={15} />
       </NodeInputStyles>
     )
