@@ -2,10 +2,12 @@ import Link from 'next/link'
 import { HeaderStyles, HeaderLink } from './styles'
 import Signin from './Signin'
 
-export default ({ user }) => (
+export default ({ user, onShowModal }) => (
   <HeaderStyles>
     <div>
-      <HeaderLink>Exam Maker</HeaderLink>
+      <Link href="/">
+        <HeaderLink>Exam Maker</HeaderLink>
+      </Link>
       <div className="links">
         <Link href="/maker">
           <HeaderLink>Create</HeaderLink>
@@ -14,7 +16,7 @@ export default ({ user }) => (
           <HeaderLink>Schema</HeaderLink>
         </Link>
         <HeaderLink>Exams</HeaderLink>
-        <Signin user={user} />
+        <Signin user={user} onClick={onShowModal} />
       </div>
     </div>
   </HeaderStyles>

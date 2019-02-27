@@ -14,10 +14,10 @@ type Exam {
   id: ID! @unique
   public: Boolean! @default(value: "false")
   title: String!
-  code: String
-  pass: Int
-  time: Int
-  image: String
+  code: String @default(value: "")
+  pass: Int @default(value: "65")
+  time: Int @default(value: "60")
+  image: String @default(value: "0")
   cover: [CoverNode]
   test: [Question]
   user: User
@@ -41,7 +41,7 @@ type CoverNode {
 
 type Choice {
   id: ID! @unique
-  label: String! @default(value: "A")
+  label: String! @default(value: "")
   text: String! @default(value: "")
 }
 

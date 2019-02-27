@@ -4,13 +4,25 @@ import GlobalStyle from './GlobalStyle'
 import Meta from './Meta'
 import Header from '../Header'
 import User from '../User'
+import SigninModal from '../Header/SigninModal'
 
 const PageStyles = styled.div``
 
 const Main = styled.main``
 
 export default class Page extends React.Component {
+  state = {
+    showModal: false
+  }
+
+  onShowModal = () => this.setState({ showModal: true })
+
+  onCloseModal = () => this.setState({ showModal: false })
+
   render() {
+    const {
+      state: { showModal }
+    } = this
     return (
       <ThemeProvider theme={theme}>
         <User>
@@ -20,7 +32,7 @@ export default class Page extends React.Component {
               <PageStyles>
                 <Meta />
                 <GlobalStyle />
-                <Header user={data.me} />
+                <Header user={data.me} onShowModal={this.onShowModal} />
                 <Main>
                   {React.Children.map(this.props.children, child =>
                     React.cloneElement(child, {
@@ -28,6 +40,7 @@ export default class Page extends React.Component {
                     })
                   )}
                 </Main>
+                <SigninModal show={showModal} onClose={this.onCloseModal} />
               </PageStyles>
             )
           }}

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Router from 'next/router'
 import Card from './Card'
 import { RedButton } from '../Shared/RedButton'
 
@@ -51,7 +52,7 @@ export default () => (
         <Title>Exam Maker</Title>
         <TagLine>
           <p>The open source initiative to create a JSON-based standard for exam simulators.</p>
-          <p> For developers, by developers.</p>
+          <p>For developers, by developers.</p>
         </TagLine>
         <ReadMoreButton>read more</ReadMoreButton>
       </BannerYellow>
@@ -60,17 +61,19 @@ export default () => (
       <BannerBottom>
         <Card
           heading="What is this?"
-          text="Exam Maker is a standard created to empower students"
+          text="Exam Maker is a standard created to empower students and teachers."
           buttonText="get started"
+          onClick={() => Router.push('/')}
         />
         <Card
           heading="Exams"
           text="Browse our catalog of exams made by the community."
           buttonText="view exams"
+          onClick={() => Router.push('/exams')}
         />
         <Card
           heading="Open Source"
-          text="Every part of Exam Maker is open source on GitHub"
+          text="Every part of Exam Maker is open source, and available on GitHub"
           buttonText="view on github"
         />
       </BannerBottom>
