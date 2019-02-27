@@ -9,9 +9,14 @@ const ControlsStyles = styled.div`
   position: fixed;
   bottom: 0;
   left: ${props => `calc(100vw - ${props.theme.maxWidth / 2})`};
-  height: 5rem;
+  height: 6rem;
   width: ${props => props.theme.maxWidth};
   display: flex;
+  align-items: center;
+  background: ${props => props.theme.grey[0]};
+  & > :first-child {
+    margin-left: 1rem;
+  }
 `
 
 const Box = styled.div`
@@ -20,10 +25,12 @@ const Box = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;
-  border: 1px solid ${props => props.theme.grey[5]};
+  background: ${props => props.theme.white};
+  border: 2px solid ${props => props.theme.grey[5]};
+  border-radius: 2px;
   outline: 2px solid ${props => (props.highlight ? props.theme.primary : 'transparent')};
   color: ${props => props.theme.grey[5]};
-  font: 1.5rem 'Open Sans Light';
+  font: 1.5rem 'Open Sans';
   margin-right: 1rem;
   cursor: pointer;
   &:hover {

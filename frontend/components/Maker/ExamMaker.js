@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 import isequal from 'lodash.isequal'
+import debounce from 'lodash.debounce'
 import Editor from './Editor'
 import Controls from './Controls'
 
-const ExamMakerStyles = styled.div``
+const ExamMakerStyles = styled.div`
+  height: calc(100vh - 6rem);
+  background: ${props => props.theme.grey[1]};
+`
 
 const MainContent = styled.div`
   width: ${props => props.theme.maxWidth};
-  margin: 3rem auto;
+  height: calc(100vh - 6rem);
+  margin: 0 auto;
+  background: ${props => props.theme.white};
 `
 
 export default class ExamMaker extends React.Component {
@@ -40,13 +46,22 @@ export default class ExamMaker extends React.Component {
 
   setModeState = mode => this.setState({ mode })
 
-  onChange = ({ target: { name, value } }) => {
+  onChange = ({ target: { name, value } }, updateExam) => {
     this.setState({ [name]: value })
+    this.onUpdateExam(updateExam)
   }
 
   onCreateQuestion = async createQuestion => {
     await createQuestion()
   }
+
+  onUpdateExam = debounce(async updateExam => {
+    const { id, title, code, pass, time, image } = this.state
+    const data = { title, code, pass, time, image }
+    await updateExam({
+      variables: { id, data }
+    })
+  }, 5000)
 
   render() {
     const {

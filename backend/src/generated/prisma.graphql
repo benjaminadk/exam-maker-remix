@@ -452,8 +452,24 @@ type Exam {
   pass: Int
   time: Int
   image: String
-  cover(where: CoverNodeWhereInput, orderBy: CoverNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CoverNode!]
-  test(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question!]
+  cover(
+    where: CoverNodeWhereInput
+    orderBy: CoverNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoverNode!]
+  test(
+    where: QuestionWhereInput
+    orderBy: QuestionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Question!]
   user: User
   createdAt: DateTime!
 }
@@ -1046,43 +1062,89 @@ type Mutation {
   createChoice(data: ChoiceCreateInput!): Choice!
   updateChoice(data: ChoiceUpdateInput!, where: ChoiceWhereUniqueInput!): Choice
   updateManyChoices(data: ChoiceUpdateManyMutationInput!, where: ChoiceWhereInput): BatchPayload!
-  upsertChoice(where: ChoiceWhereUniqueInput!, create: ChoiceCreateInput!, update: ChoiceUpdateInput!): Choice!
+  upsertChoice(
+    where: ChoiceWhereUniqueInput!
+    create: ChoiceCreateInput!
+    update: ChoiceUpdateInput!
+  ): Choice!
   deleteChoice(where: ChoiceWhereUniqueInput!): Choice
   deleteManyChoices(where: ChoiceWhereInput): BatchPayload!
   createCoverNode(data: CoverNodeCreateInput!): CoverNode!
   updateCoverNode(data: CoverNodeUpdateInput!, where: CoverNodeWhereUniqueInput!): CoverNode
-  updateManyCoverNodes(data: CoverNodeUpdateManyMutationInput!, where: CoverNodeWhereInput): BatchPayload!
-  upsertCoverNode(where: CoverNodeWhereUniqueInput!, create: CoverNodeCreateInput!, update: CoverNodeUpdateInput!): CoverNode!
+  updateManyCoverNodes(
+    data: CoverNodeUpdateManyMutationInput!
+    where: CoverNodeWhereInput
+  ): BatchPayload!
+  upsertCoverNode(
+    where: CoverNodeWhereUniqueInput!
+    create: CoverNodeCreateInput!
+    update: CoverNodeUpdateInput!
+  ): CoverNode!
   deleteCoverNode(where: CoverNodeWhereUniqueInput!): CoverNode
   deleteManyCoverNodes(where: CoverNodeWhereInput): BatchPayload!
   createExam(data: ExamCreateInput!): Exam!
   updateExam(data: ExamUpdateInput!, where: ExamWhereUniqueInput!): Exam
   updateManyExams(data: ExamUpdateManyMutationInput!, where: ExamWhereInput): BatchPayload!
-  upsertExam(where: ExamWhereUniqueInput!, create: ExamCreateInput!, update: ExamUpdateInput!): Exam!
+  upsertExam(
+    where: ExamWhereUniqueInput!
+    create: ExamCreateInput!
+    update: ExamUpdateInput!
+  ): Exam!
   deleteExam(where: ExamWhereUniqueInput!): Exam
   deleteManyExams(where: ExamWhereInput): BatchPayload!
   createExplanationNode(data: ExplanationNodeCreateInput!): ExplanationNode!
-  updateExplanationNode(data: ExplanationNodeUpdateInput!, where: ExplanationNodeWhereUniqueInput!): ExplanationNode
-  updateManyExplanationNodes(data: ExplanationNodeUpdateManyMutationInput!, where: ExplanationNodeWhereInput): BatchPayload!
-  upsertExplanationNode(where: ExplanationNodeWhereUniqueInput!, create: ExplanationNodeCreateInput!, update: ExplanationNodeUpdateInput!): ExplanationNode!
+  updateExplanationNode(
+    data: ExplanationNodeUpdateInput!
+    where: ExplanationNodeWhereUniqueInput!
+  ): ExplanationNode
+  updateManyExplanationNodes(
+    data: ExplanationNodeUpdateManyMutationInput!
+    where: ExplanationNodeWhereInput
+  ): BatchPayload!
+  upsertExplanationNode(
+    where: ExplanationNodeWhereUniqueInput!
+    create: ExplanationNodeCreateInput!
+    update: ExplanationNodeUpdateInput!
+  ): ExplanationNode!
   deleteExplanationNode(where: ExplanationNodeWhereUniqueInput!): ExplanationNode
   deleteManyExplanationNodes(where: ExplanationNodeWhereInput): BatchPayload!
   createQuestion(data: QuestionCreateInput!): Question!
   updateQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question
-  updateManyQuestions(data: QuestionUpdateManyMutationInput!, where: QuestionWhereInput): BatchPayload!
-  upsertQuestion(where: QuestionWhereUniqueInput!, create: QuestionCreateInput!, update: QuestionUpdateInput!): Question!
+  updateManyQuestions(
+    data: QuestionUpdateManyMutationInput!
+    where: QuestionWhereInput
+  ): BatchPayload!
+  upsertQuestion(
+    where: QuestionWhereUniqueInput!
+    create: QuestionCreateInput!
+    update: QuestionUpdateInput!
+  ): Question!
   deleteQuestion(where: QuestionWhereUniqueInput!): Question
   deleteManyQuestions(where: QuestionWhereInput): BatchPayload!
   createQuestionNode(data: QuestionNodeCreateInput!): QuestionNode!
-  updateQuestionNode(data: QuestionNodeUpdateInput!, where: QuestionNodeWhereUniqueInput!): QuestionNode
-  updateManyQuestionNodes(data: QuestionNodeUpdateManyMutationInput!, where: QuestionNodeWhereInput): BatchPayload!
-  upsertQuestionNode(where: QuestionNodeWhereUniqueInput!, create: QuestionNodeCreateInput!, update: QuestionNodeUpdateInput!): QuestionNode!
+  updateQuestionNode(
+    data: QuestionNodeUpdateInput!
+    where: QuestionNodeWhereUniqueInput!
+  ): QuestionNode
+  updateManyQuestionNodes(
+    data: QuestionNodeUpdateManyMutationInput!
+    where: QuestionNodeWhereInput
+  ): BatchPayload!
+  upsertQuestionNode(
+    where: QuestionNodeWhereUniqueInput!
+    create: QuestionNodeCreateInput!
+    update: QuestionNodeUpdateInput!
+  ): QuestionNode!
   deleteQuestionNode(where: QuestionNodeWhereUniqueInput!): QuestionNode
   deleteManyQuestionNodes(where: QuestionNodeWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertUser(
+    where: UserWhereUniqueInput!
+    create: UserCreateInput!
+    update: UserUpdateInput!
+  ): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
@@ -1106,36 +1168,172 @@ type PageInfo {
 
 type Query {
   choice(where: ChoiceWhereUniqueInput!): Choice
-  choices(where: ChoiceWhereInput, orderBy: ChoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Choice]!
-  choicesConnection(where: ChoiceWhereInput, orderBy: ChoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ChoiceConnection!
+  choices(
+    where: ChoiceWhereInput
+    orderBy: ChoiceOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Choice]!
+  choicesConnection(
+    where: ChoiceWhereInput
+    orderBy: ChoiceOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ChoiceConnection!
   coverNode(where: CoverNodeWhereUniqueInput!): CoverNode
-  coverNodes(where: CoverNodeWhereInput, orderBy: CoverNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CoverNode]!
-  coverNodesConnection(where: CoverNodeWhereInput, orderBy: CoverNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CoverNodeConnection!
+  coverNodes(
+    where: CoverNodeWhereInput
+    orderBy: CoverNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoverNode]!
+  coverNodesConnection(
+    where: CoverNodeWhereInput
+    orderBy: CoverNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): CoverNodeConnection!
   exam(where: ExamWhereUniqueInput!): Exam
-  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exam]!
-  examsConnection(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExamConnection!
+  exams(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Exam]!
+  examsConnection(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ExamConnection!
   explanationNode(where: ExplanationNodeWhereUniqueInput!): ExplanationNode
-  explanationNodes(where: ExplanationNodeWhereInput, orderBy: ExplanationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExplanationNode]!
-  explanationNodesConnection(where: ExplanationNodeWhereInput, orderBy: ExplanationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExplanationNodeConnection!
+  explanationNodes(
+    where: ExplanationNodeWhereInput
+    orderBy: ExplanationNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExplanationNode]!
+  explanationNodesConnection(
+    where: ExplanationNodeWhereInput
+    orderBy: ExplanationNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ExplanationNodeConnection!
   question(where: QuestionWhereUniqueInput!): Question
-  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question]!
-  questionsConnection(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionConnection!
+  questions(
+    where: QuestionWhereInput
+    orderBy: QuestionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Question]!
+  questionsConnection(
+    where: QuestionWhereInput
+    orderBy: QuestionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): QuestionConnection!
   questionNode(where: QuestionNodeWhereUniqueInput!): QuestionNode
-  questionNodes(where: QuestionNodeWhereInput, orderBy: QuestionNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [QuestionNode]!
-  questionNodesConnection(where: QuestionNodeWhereInput, orderBy: QuestionNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionNodeConnection!
+  questionNodes(
+    where: QuestionNodeWhereInput
+    orderBy: QuestionNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [QuestionNode]!
+  questionNodesConnection(
+    where: QuestionNodeWhereInput
+    orderBy: QuestionNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): QuestionNodeConnection!
   user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User]!
+  usersConnection(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): UserConnection!
   node(id: ID!): Node
 }
 
 type Question {
   id: ID!
   variant: Int!
-  question(where: QuestionNodeWhereInput, orderBy: QuestionNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [QuestionNode!]
-  choices(where: ChoiceWhereInput, orderBy: ChoiceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Choice!]
+  question(
+    where: QuestionNodeWhereInput
+    orderBy: QuestionNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [QuestionNode!]
+  choices(
+    where: ChoiceWhereInput
+    orderBy: ChoiceOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Choice!]
   answer: [Boolean!]!
-  explanation(where: ExplanationNodeWhereInput, orderBy: ExplanationNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExplanationNode!]
+  explanation(
+    where: ExplanationNodeWhereInput
+    orderBy: ExplanationNodeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExplanationNode!]
 }
 
 type QuestionConnection {
@@ -1551,7 +1749,15 @@ type User {
   email: String
   image: String
   role: Role!
-  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exam!]
+  exams(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Exam!]
   createdAt: DateTime!
 }
 

@@ -66,14 +66,37 @@ module.exports = {
     }
   },
 
+  createNode: async (_, args, ctx, info) => {
+    try {
+      const { id, type } = args
+      const payload = {
+        where: { id },
+        data: {
+          [type]: {
+            create: [{ variant: 1, text: '' }]
+          }
+        }
+      }
+      if (type === 'cover') {
+        await ctx.prisma.updateExam(payload)
+      } else if (type === 'question') {
+        await ctx.prisma.updateQuestion(payload)
+      }
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   updateNode: async (_, args, ctx, info) => {
     try {
       const { id, type, variant, text } = args
+      const payload = { where: { id }, data: { variant, text } }
       if (type === 'cover') {
-        await ctx.prisma.updateCoverNode({
-          where: { id },
-          data: { variant, text }
-        })
+        await ctx.prisma.updateCoverNode(payload)
+      } else if (type === 'question') {
+        await ctx.prisma.updateQuestionNode(payload)
       }
       return { success: true }
     } catch (error) {
@@ -87,6 +110,8 @@ module.exports = {
       const { id, type } = args
       if (type === 'cover') {
         await ctx.prisma.deleteCoverNode({ id })
+      } else if (type === 'question') {
+        await ctx.prisma.deleteQuestionNode({ id })
       }
       return { success: true }
     } catch (error) {

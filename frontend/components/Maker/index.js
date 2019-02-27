@@ -5,6 +5,7 @@ import ExamMaker from './ExamMaker'
 
 export default class Maker extends React.Component {
   state = {
+    loading: true,
     create: true
   }
 
@@ -18,15 +19,18 @@ export default class Maker extends React.Component {
     }
   }
 
-  setMode = () => this.setState({ create: !Boolean(this.props.query.id) })
+  setMode = () => this.setState({ loading: false, create: !Boolean(this.props.query.id) })
 
   render() {
     const {
       props: {
         query: { id }
       },
-      state: { create }
+      state: { loading, create }
     } = this
+    if (loading) {
+      return <div>loading</div>
+    }
     if (create) {
       return <CreateExam />
     }

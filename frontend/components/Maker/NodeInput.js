@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import { Mutation } from 'react-apollo'
 import isequal from 'lodash.isequal'
 import debounce from 'lodash.debounce'
@@ -8,46 +7,8 @@ import { examById } from '../../apollo/query/exam'
 import { Image } from 'styled-icons/material/Image'
 import { Title } from 'styled-icons/material/Title'
 import { Delete } from 'styled-icons/material/Delete'
+import { NodeInputStyles, Option } from './styles/NodeInput'
 import Input from './Input'
-
-const NodeInputStyles = styled.div`
-  display: grid;
-  grid-template-columns: 9rem 1fr 4rem;
-  .variants {
-    width: 7.5rem;
-    height: 2rem;
-    display: flex;
-    border: 1px solid ${props => props.theme.grey[2]};
-  }
-  & > :last-child {
-    justify-self: center;
-    margin-top: 0.5rem;
-    color: ${props => props.theme.grey[10]};
-    transition: 0.3s;
-    cursor: pointer;
-    &:hover {
-      color: ${props => props.theme.secondary};
-    }
-  }
-`
-
-const Option = styled.div`
-  width: 3rem;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  background: ${props => (props.highlight ? props.theme.primary : props.theme.grey[0])};
-  color: ${props => props.theme.grey[10]};
-  transition: 0.3s;
-  cursor: pointer;
-  &:hover {
-    color: ${props => props.theme.secondary};
-    background: ${props => props.theme.primary};
-  }
-  svg {
-    color: inherit;
-  }
-`
 
 export default class NodeInput extends React.Component {
   state = {
