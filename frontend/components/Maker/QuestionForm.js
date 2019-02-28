@@ -7,15 +7,10 @@ import { SubHeading } from './styles/SubHeading'
 import { Center } from './styles/Center'
 import NodeInput from './NodeInput'
 import Type from './Type'
+import ChoiceInput from './ChoiceInput'
 
 export default ({ id, question }) => (
   <FormStyles>
-    <Center>
-      <SubHeading>
-        <span>Type</span>
-        <Type question={question} />
-      </SubHeading>
-    </Center>
     <Center>
       <SubHeading>
         <span>Question Nodes</span>
@@ -33,6 +28,29 @@ export default ({ id, question }) => (
       </SubHeading>
       {question.question.map((q, i) => (
         <NodeInput key={q.id} id={id} type="question" node={q} />
+      ))}
+    </Center>
+    <Center>
+      <SubHeading>
+        <span>Type</span>
+        <Type id={id} question={question} />
+      </SubHeading>
+      <SubHeading>
+        <span>Answer Nodes</span>
+        <span className="add">
+          <Add size={15} />
+        </span>
+      </SubHeading>
+      {question.choices.map((c, i) => (
+        <ChoiceInput
+          key={c.id}
+          id={id}
+          questionId={question.id}
+          choice={c}
+          answer={question.answer[i]}
+          index={i}
+          answers={question.answer}
+        />
       ))}
     </Center>
   </FormStyles>

@@ -16,6 +16,25 @@ export default ({ id, mode, title, code, time, pass, image, cover, test, onChang
       <FormStyles>
         <Center>
           <SubHeading>
+            <span>Cover Nodes</span>
+            <Mutation
+              mutation={createNode}
+              variables={{ id, type: 'cover' }}
+              refetchQueries={[{ query: examById, variables: { id } }]}
+            >
+              {(createNode, { loading }) => (
+                <span className="add" onClick={async () => await createNode()}>
+                  <Add size={15} />
+                </span>
+              )}
+            </Mutation>
+          </SubHeading>
+          {cover.map((n, i) => (
+            <NodeInput key={n.id} type="cover" id={id} node={n} />
+          ))}
+        </Center>
+        <Center>
+          <SubHeading>
             <span>Exam Properties</span>
             <span />
           </SubHeading>
@@ -74,25 +93,6 @@ export default ({ id, mode, title, code, time, pass, image, cover, test, onChang
               />
             )}
           </Mutation>
-        </Center>
-        <Center>
-          <SubHeading>
-            <span>Cover Nodes</span>
-            <Mutation
-              mutation={createNode}
-              variables={{ id, type: 'cover' }}
-              refetchQueries={[{ query: examById, variables: { id } }]}
-            >
-              {(createNode, { loading }) => (
-                <span className="add" onClick={async () => await createNode()}>
-                  <Add size={15} />
-                </span>
-              )}
-            </Mutation>
-          </SubHeading>
-          {cover.map((n, i) => (
-            <NodeInput key={n.id} type="cover" id={id} node={n} />
-          ))}
         </Center>
       </FormStyles>
     )

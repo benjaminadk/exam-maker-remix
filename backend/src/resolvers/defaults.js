@@ -2,11 +2,17 @@ const node = [{ variant: 1, text: '' }]
 const choices = [
   {
     label: 'A',
-    text: '',
+    text: ''
+  },
+  {
     label: 'B',
-    text: '',
+    text: ''
+  },
+  {
     label: 'C',
-    text: '',
+    text: ''
+  },
+  {
     label: 'D',
     text: ''
   }

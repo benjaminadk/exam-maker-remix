@@ -12,9 +12,10 @@ type Mutation {
   createExam(data: ExamCreateInput): Exam
   updateExam(id: ID!, data: ExamUpdateInput): Payload
   createQuestion(id: ID!): Payload
+  updateQuestion(id: ID!, data: QuestionUpdateInput): Payload
   createNode(id: ID!, type: String): Payload
   updateNode(id: ID!, type: String, variant: Int, text: String): Payload
-  deleteNode(id: ID!, type: String): Payload
+  deleteNode(id: ID!, type: String, questionId: ID, answers: [Boolean]): Payload
 }
 
 type User {

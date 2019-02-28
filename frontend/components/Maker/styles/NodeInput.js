@@ -31,7 +31,6 @@ export const Option = styled.div`
   transition: 0.3s;
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.secondary};
     background: ${props => props.theme.primary};
   }
   svg {

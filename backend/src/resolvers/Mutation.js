@@ -66,6 +66,19 @@ module.exports = {
     }
   },
 
+  updateQuestion: async (_, args, ctx, info) => {
+    try {
+      await ctx.prisma.updateQuestion({
+        where: { id: args.id },
+        data: { ...args.data }
+      })
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   createNode: async (_, args, ctx, info) => {
     try {
       const { id, type } = args
@@ -97,6 +110,11 @@ module.exports = {
         await ctx.prisma.updateCoverNode(payload)
       } else if (type === 'question') {
         await ctx.prisma.updateQuestionNode(payload)
+      } else if (type === 'choices') {
+        await ctx.prisma.updateChoice({
+          where: { id },
+          data: { text }
+        })
       }
       return { success: true }
     } catch (error) {
@@ -107,11 +125,17 @@ module.exports = {
 
   deleteNode: async (_, args, ctx, info) => {
     try {
-      const { id, type } = args
+      const { id, type, questionId, answers } = args
       if (type === 'cover') {
         await ctx.prisma.deleteCoverNode({ id })
       } else if (type === 'question') {
         await ctx.prisma.deleteQuestionNode({ id })
+      } else if (type === 'choices') {
+        await ctx.prisma.deleteChoice({ id })
+        await ctx.prisma.updateQuestion({
+          where: { id: questionId },
+          data: { answer: { set: answers } }
+        })
       }
       return { success: true }
     } catch (error) {
