@@ -37,9 +37,17 @@ export default ({ id, question }) => (
       </SubHeading>
       <SubHeading>
         <span>Answer Nodes</span>
-        <span className="add">
-          <Add size={15} />
-        </span>
+        <Mutation
+          mutation={createNode}
+          variables={{ id: question.id, type: 'choices' }}
+          refetchQueries={[{ query: examById, variables: { id } }]}
+        >
+          {(createNode, { loading }) => (
+            <span className="add" onClick={async () => await createNode()}>
+              <Add size={15} />
+            </span>
+          )}
+        </Mutation>
       </SubHeading>
       {question.choices.map((c, i) => (
         <ChoiceInput

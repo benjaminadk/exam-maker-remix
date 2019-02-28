@@ -12,7 +12,7 @@ export const InputStyles = styled.div`
   }
   .underline {
     position: relative;
-    height: 0.1rem;
+    height: 2px;
     background: ${props => props.theme.grey[5]};
   }
 `
@@ -31,7 +31,7 @@ export const Label = styled.span.attrs(props => ({
 export const Underline = styled.div.attrs(props => ({
   style: {
     width: props.focus ? '100%' : '0%',
-    height: '.15rem'
+    height: '2px'
   }
 }))`
   position: absolute;

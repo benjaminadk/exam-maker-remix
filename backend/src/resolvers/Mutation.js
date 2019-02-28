@@ -94,6 +94,17 @@ module.exports = {
         await ctx.prisma.updateExam(payload)
       } else if (type === 'question') {
         await ctx.prisma.updateQuestion(payload)
+      } else if (type === 'choices') {
+        const question = await ctx.prisma.question({ id })
+        await ctx.prisma.updateQuestion({
+          where: { id },
+          data: {
+            choices: {
+              create: [{ label: 'A', text: '' }]
+            },
+            answer: { set: question.answer.concat(false) }
+          }
+        })
       }
       return { success: true }
     } catch (error) {
