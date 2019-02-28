@@ -1,10 +1,13 @@
 import styled, { ThemeProvider } from 'styled-components'
+import NProgress from 'nprogress'
+import Router from 'next/router'
 import theme from './theme'
 import GlobalStyle from './GlobalStyle'
 import Meta from './Meta'
 import Header from '../Header'
-import User from '../User'
+import User from './User'
 import SigninModal from '../Header/SigninModal'
+import Loading from './Loading'
 
 const PageStyles = styled.div``
 
@@ -13,6 +16,16 @@ const Main = styled.main``
 export default class Page extends React.Component {
   state = {
     showModal: false
+  }
+
+  componentDidMount() {
+    Router.onRouteChangeStart = pathname => {
+      NProgress.start()
+    }
+
+    Router.onRouteChangeComplete = pathname => {
+      NProgress.done()
+    }
   }
 
   onShowModal = () => this.setState({ showModal: true })
@@ -27,7 +40,7 @@ export default class Page extends React.Component {
       <ThemeProvider theme={theme}>
         <User>
           {({ loading, data }) => {
-            if (loading) return null
+            if (loading) return <Loading size={50} />
             return (
               <PageStyles>
                 <Meta />

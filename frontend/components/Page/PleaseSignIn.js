@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo'
 import { me } from '../../apollo/query/me'
 import SigninModal from '../Header/SigninModal'
+import Loading from './Loading'
 
 export default class PleaseSignIn extends React.Component {
   state = {
@@ -19,7 +20,7 @@ export default class PleaseSignIn extends React.Component {
     return (
       <Query query={me}>
         {({ data, loading }) => {
-          if (loading) return <div>loading</div>
+          if (loading) return <Loading size={50} />
           if (!data.me) {
             return <SigninModal show={showModal} onClose={this.onCloseModal} />
           }
