@@ -19,12 +19,15 @@ export const SubHeading = styled.div`
     align-items: center;
     border: 1px solid ${props => props.theme.grey[5]};
     border-radius: 2px;
+    color: ${props => props.theme.grey[5]};
     cursor: pointer;
     &:hover {
       outline: 2px solid ${props => props.theme.primary};
+      color: ${props => props.theme.grey[10]};
+      border: 1px solid ${props => props.theme.grey[10]};
     }
     svg {
-      color: ${props => props.theme.grey[5]};
+      color: inherit;
     }
   }
 `

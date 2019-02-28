@@ -54,6 +54,7 @@ export default ({ id, mode, title, code, time, pass, image, cover, test, onChang
               <Input
                 width={300}
                 label={loading ? 'Saving...' : 'Code'}
+                hint="Certification Code e.g. 601-902"
                 value={code}
                 inputProps={{ type: 'text', name: 'code', maxLength: 8, spellCheck: false }}
                 onChange={e => onChange(e, updateExam)}
@@ -64,7 +65,8 @@ export default ({ id, mode, title, code, time, pass, image, cover, test, onChang
             {(updateExam, { loading }) => (
               <Input
                 width={300}
-                label={loading ? 'Saving...' : 'Time Limit In Minutes'}
+                label={loading ? 'Saving...' : 'Time Limit'}
+                hint="Minutes"
                 value={time}
                 inputProps={{ type: 'number', name: 'time', min: 0, max: 1000 }}
                 onChange={e => onChange(e, updateExam)}
@@ -75,7 +77,8 @@ export default ({ id, mode, title, code, time, pass, image, cover, test, onChang
             {(updateExam, { loading }) => (
               <Input
                 width={300}
-                label={loading ? 'Saving...' : 'Passing Score Percentage'}
+                label={loading ? 'Saving...' : 'Passing Score'}
+                hint="Percentage [ 0 - 100 ]"
                 value={pass}
                 inputProps={{ type: 'number', name: 'pass', min: 0, max: 100 }}
                 onChange={e => onChange(e, updateExam)}
@@ -87,6 +90,7 @@ export default ({ id, mode, title, code, time, pass, image, cover, test, onChang
               <Input
                 width={300}
                 label={loading ? 'Saving...' : 'Logo URL'}
+                hint="Image with 1:1 size ratio"
                 value={image}
                 inputProps={{ type: 'text', name: 'image', spellCheck: false }}
                 onChange={e => onChange(e, updateExam)}

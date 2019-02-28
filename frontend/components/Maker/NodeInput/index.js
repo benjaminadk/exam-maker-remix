@@ -1,14 +1,14 @@
 import { Mutation } from 'react-apollo'
 import isequal from 'lodash.isequal'
 import debounce from 'lodash.debounce'
-import { updateNode } from '../../apollo/mutation/updateNode'
-import { deleteNode } from '../../apollo/mutation/deleteNode'
-import { examById } from '../../apollo/query/exam'
+import { updateNode } from '../../../apollo/mutation/updateNode'
+import { deleteNode } from '../../../apollo/mutation/deleteNode'
+import { examById } from '../../../apollo/query/exam'
 import { Image } from 'styled-icons/material/Image'
 import { Title } from 'styled-icons/material/Title'
 import { Delete } from 'styled-icons/material/Delete'
-import { NodeInputStyles, Option } from './styles/NodeInput'
-import Input from './Input'
+import { NodeInputStyles, Option } from '../styles/NodeInput'
+import Input from '../Input'
 
 export default class NodeInput extends React.Component {
   state = {
