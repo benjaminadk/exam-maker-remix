@@ -1,5 +1,5 @@
 export default `{
-  "public": true,
+  "published": true,
   "author": "Julia McMann",
   "title": "Making a Murderer",
   "code": "000-000",

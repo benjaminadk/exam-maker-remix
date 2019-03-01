@@ -12,7 +12,7 @@ type User {
 
 type Exam {
   id: ID! @unique
-  public: Boolean! @default(value: "false")
+  published: Boolean! @default(value: "false")
   title: String!
   code: String @default(value: "")
   pass: Int @default(value: "65")

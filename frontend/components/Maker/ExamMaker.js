@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import isequal from 'lodash.isequal'
 import debounce from 'lodash.debounce'
-import Editor from './Editor'
+import MainForm from './MainForm'
+import QuestionForm from './QuestionForm'
 import Controls from './Controls'
 
 const ExamMakerStyles = styled.div`
@@ -20,6 +21,7 @@ export default class ExamMaker extends React.Component {
   state = {
     mode: -1,
     id: '',
+    published: false,
     title: '',
     code: '',
     pass: '',
@@ -40,8 +42,8 @@ export default class ExamMaker extends React.Component {
   }
 
   setExamState = () => {
-    const { id, title, code, pass, time, image, cover, test } = this.props.exam
-    this.setState({ id, title, code, pass, time, image, cover, test })
+    const { id, published, title, code, pass, time, image, cover, test } = this.props.exam
+    this.setState({ id, published, title, code, pass, time, image, cover, test })
   }
 
   setModeState = mode => this.setState({ mode })
@@ -65,23 +67,26 @@ export default class ExamMaker extends React.Component {
 
   render() {
     const {
-      state: { id, mode, title, code, time, pass, image, cover, test }
+      state: { id, published, mode, title, code, time, pass, image, cover, test }
     } = this
     return (
       <ExamMakerStyles>
         <MainContent>
-          <Editor
-            mode={mode}
-            id={id}
-            title={title}
-            code={code}
-            time={time}
-            pass={pass}
-            image={image}
-            cover={cover}
-            test={test}
-            onChange={this.onChange}
-          />
+          {mode === -1 ? (
+            <MainForm
+              id={id}
+              published={published}
+              title={title}
+              code={code}
+              time={time}
+              pass={pass}
+              image={image}
+              cover={cover}
+              onChange={this.onChange}
+            />
+          ) : (
+            <QuestionForm id={id} question={test[mode]} />
+          )}
           <Controls
             mode={mode}
             id={id}

@@ -4,7 +4,7 @@ export const examById = gql`
   query ExamById($id: ID!) {
     exam(id: $id) {
       id
-      public
+      published
       title
       code
       pass

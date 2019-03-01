@@ -32,7 +32,7 @@ type User {
 
 type Exam {
   id: ID!
-  public: Boolean!
+  published: Boolean!
   title: String!
   code: String
   pass: Int

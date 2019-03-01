@@ -450,8 +450,8 @@ export type ChoiceOrderByInput =
 export type ExamOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "public_ASC"
-  | "public_DESC"
+  | "published_ASC"
+  | "published_DESC"
   | "title_ASC"
   | "title_DESC"
   | "code_ASC"
@@ -622,7 +622,7 @@ export interface ExamSubscriptionWhereInput {
 }
 
 export interface ExamCreateInput {
-  public?: Boolean;
+  published?: Boolean;
   title: String;
   code?: String;
   pass?: Int;
@@ -716,7 +716,7 @@ export interface QuestionCreateInput {
 }
 
 export interface ExamUpdateManyDataInput {
-  public?: Boolean;
+  published?: Boolean;
   title?: String;
   code?: String;
   pass?: Int;
@@ -744,8 +744,8 @@ export interface ExamScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  public?: Boolean;
-  public_not?: Boolean;
+  published?: Boolean;
+  published_not?: Boolean;
   title?: String;
   title_not?: String;
   title_in?: String[] | String;
@@ -823,7 +823,7 @@ export interface QuestionNodeCreateInput {
 }
 
 export interface ExamUpdateWithoutUserDataInput {
-  public?: Boolean;
+  published?: Boolean;
   title?: String;
   code?: String;
   pass?: Int;
@@ -853,8 +853,8 @@ export interface ExamWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  public?: Boolean;
-  public_not?: Boolean;
+  published?: Boolean;
+  published_not?: Boolean;
   title?: String;
   title_not?: String;
   title_in?: String[] | String;
@@ -1011,7 +1011,7 @@ export interface QuestionNodeUpdateInput {
 }
 
 export interface ExamUpdateInput {
-  public?: Boolean;
+  published?: Boolean;
   title?: String;
   code?: String;
   pass?: Int;
@@ -1394,7 +1394,7 @@ export interface QuestionNodeUpdateDataInput {
 }
 
 export interface ExamCreateWithoutUserInput {
-  public?: Boolean;
+  published?: Boolean;
   title: String;
   code?: String;
   pass?: Int;
@@ -1471,7 +1471,7 @@ export interface QuestionNodeUpdateManyWithWhereNestedInput {
 }
 
 export interface ExamUpdateManyMutationInput {
-  public?: Boolean;
+  published?: Boolean;
   title?: String;
   code?: String;
   pass?: Int;
@@ -2280,7 +2280,7 @@ export interface ExplanationNodeConnectionSubscription
 
 export interface Exam {
   id: ID_Output;
-  public: Boolean;
+  published: Boolean;
   title: String;
   code?: String;
   pass?: Int;
@@ -2291,7 +2291,7 @@ export interface Exam {
 
 export interface ExamPromise extends Promise<Exam>, Fragmentable {
   id: () => Promise<ID_Output>;
-  public: () => Promise<Boolean>;
+  published: () => Promise<Boolean>;
   title: () => Promise<String>;
   code: () => Promise<String>;
   pass: () => Promise<Int>;
@@ -2327,7 +2327,7 @@ export interface ExamSubscription
   extends Promise<AsyncIterator<Exam>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  public: () => Promise<AsyncIterator<Boolean>>;
+  published: () => Promise<AsyncIterator<Boolean>>;
   title: () => Promise<AsyncIterator<String>>;
   code: () => Promise<AsyncIterator<String>>;
   pass: () => Promise<AsyncIterator<Int>>;
@@ -2585,7 +2585,7 @@ export interface AggregateUserSubscription
 
 export interface ExamPreviousValues {
   id: ID_Output;
-  public: Boolean;
+  published: Boolean;
   title: String;
   code?: String;
   pass?: Int;
@@ -2598,7 +2598,7 @@ export interface ExamPreviousValuesPromise
   extends Promise<ExamPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  public: () => Promise<Boolean>;
+  published: () => Promise<Boolean>;
   title: () => Promise<String>;
   code: () => Promise<String>;
   pass: () => Promise<Int>;
@@ -2611,7 +2611,7 @@ export interface ExamPreviousValuesSubscription
   extends Promise<AsyncIterator<ExamPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  public: () => Promise<AsyncIterator<Boolean>>;
+  published: () => Promise<AsyncIterator<Boolean>>;
   title: () => Promise<AsyncIterator<String>>;
   code: () => Promise<AsyncIterator<String>>;
   pass: () => Promise<AsyncIterator<Int>>;

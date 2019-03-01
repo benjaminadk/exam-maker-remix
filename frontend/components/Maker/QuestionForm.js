@@ -1,16 +1,21 @@
+import styled from 'styled-components'
 import { Mutation } from 'react-apollo'
 import { Add } from 'styled-icons/material/Add'
 import { createNode } from '../../apollo/mutation/createNode'
 import { examById } from '../../apollo/query/exam'
-import { FormStyles } from './styles/FormStyles'
 import { SubHeading } from './styles/SubHeading'
 import { Center } from './styles/Center'
 import NodeInput from './NodeInput'
 import Type from './Type'
 import ChoiceInput from './ChoiceInput'
 
+const QuestionFormStyles = styled.div`
+  display: grid;
+  grid-template-columns: 60% 40%;
+`
+
 export default ({ id, question }) => (
-  <FormStyles>
+  <QuestionFormStyles>
     <Center>
       <SubHeading>
         <span>Question Nodes</span>
@@ -61,5 +66,5 @@ export default ({ id, question }) => (
         />
       ))}
     </Center>
-  </FormStyles>
+  </QuestionFormStyles>
 )

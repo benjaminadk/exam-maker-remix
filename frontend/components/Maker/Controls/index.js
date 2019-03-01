@@ -61,7 +61,7 @@ export default class Controls extends React.Component {
     return (
       <ControlsStyles items={test.length} shifts={shifts} shift={shift} width={width}>
         <Box highlight={mode === -1} onClick={() => setModeState(-1)}>
-          <Tune className="tune" />
+          <Tune className="settings" />
         </Box>
         <AddQuestion id={id} onClick={this.onAddQuestion} />
         <ArrowBox disable={shifts === 0 || shift === 0} onClick={() => this.setShift(false)}>

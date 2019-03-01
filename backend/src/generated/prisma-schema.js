@@ -451,7 +451,7 @@ scalar DateTime
 
 type Exam {
   id: ID!
-  public: Boolean!
+  published: Boolean!
   title: String!
   code: String
   pass: Int
@@ -470,7 +470,7 @@ type ExamConnection {
 }
 
 input ExamCreateInput {
-  public: Boolean
+  published: Boolean
   title: String!
   code: String
   pass: Int
@@ -487,7 +487,7 @@ input ExamCreateManyWithoutUserInput {
 }
 
 input ExamCreateWithoutUserInput {
-  public: Boolean
+  published: Boolean
   title: String!
   code: String
   pass: Int
@@ -505,8 +505,8 @@ type ExamEdge {
 enum ExamOrderByInput {
   id_ASC
   id_DESC
-  public_ASC
-  public_DESC
+  published_ASC
+  published_DESC
   title_ASC
   title_DESC
   code_ASC
@@ -525,7 +525,7 @@ enum ExamOrderByInput {
 
 type ExamPreviousValues {
   id: ID!
-  public: Boolean!
+  published: Boolean!
   title: String!
   code: String
   pass: Int
@@ -549,8 +549,8 @@ input ExamScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  public: Boolean
-  public_not: Boolean
+  published: Boolean
+  published_not: Boolean
   title: String
   title_not: String
   title_in: [String!]
@@ -641,7 +641,7 @@ input ExamSubscriptionWhereInput {
 }
 
 input ExamUpdateInput {
-  public: Boolean
+  published: Boolean
   title: String
   code: String
   pass: Int
@@ -653,7 +653,7 @@ input ExamUpdateInput {
 }
 
 input ExamUpdateManyDataInput {
-  public: Boolean
+  published: Boolean
   title: String
   code: String
   pass: Int
@@ -662,7 +662,7 @@ input ExamUpdateManyDataInput {
 }
 
 input ExamUpdateManyMutationInput {
-  public: Boolean
+  published: Boolean
   title: String
   code: String
   pass: Int
@@ -688,7 +688,7 @@ input ExamUpdateManyWithWhereNestedInput {
 }
 
 input ExamUpdateWithoutUserDataInput {
-  public: Boolean
+  published: Boolean
   title: String
   code: String
   pass: Int
@@ -724,8 +724,8 @@ input ExamWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  public: Boolean
-  public_not: Boolean
+  published: Boolean
+  published_not: Boolean
   title: String
   title_not: String
   title_in: [String!]

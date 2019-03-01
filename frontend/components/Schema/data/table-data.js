@@ -1,5 +1,5 @@
 export default [
-  ['public', 'boolean', 'is exam available for public download'],
+  ['published', 'boolean', 'is exam available for public download'],
   ['author', 'string', 'name/s of exam creator - separate with `,`'],
   ['title', 'string', 'title of exam'],
   ['code', 'string', 'certificate granter code'],

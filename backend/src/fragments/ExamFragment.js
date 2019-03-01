@@ -1,7 +1,7 @@
 module.exports = `
   fragment ExamFragment on Exam {
     id
-    public
+    published
     title
     code
     pass

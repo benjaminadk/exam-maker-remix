@@ -7,7 +7,7 @@ export const ControlsStyles = styled.div`
   height: 6rem;
   width: ${props => props.theme.maxWidth};
   display: grid;
-  grid-template-columns: 4.4rem 4.4rem 4.4rem 1fr 5rem;
+  grid-template-columns: repeat(3, 4.4rem) 1fr 5rem;
   grid-gap: 1rem;
   align-items: center;
   background: ${props => props.theme.grey[0]};
@@ -44,7 +44,8 @@ export const Box = styled.div`
     color: ${props => props.theme.grey[10]};
   }
   .add,
-  .tune,
+  .settings,
+  .cover,
   .arrow {
     width: 2rem;
     height: 2rem;
