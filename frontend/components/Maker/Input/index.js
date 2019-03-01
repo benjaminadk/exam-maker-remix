@@ -5,13 +5,35 @@ export default class Input extends React.Component {
     focus: false
   }
 
-  onFocus = () => this.setState({ focus: true }, () => this.input.focus())
+  componentDidMount() {
+    this.text.addEventListener('input', this.resize)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.value && this.props.value && this.text.scrollHeight > 20) {
+      this.resize()
+    }
+  }
+
+  componentWillUnmount() {
+    this.text.removeEventListener('input', this.resize)
+  }
+
+  resize = () => {
+    this.text.style.height = 'auto'
+    this.text.style.height =
+      this.text.scrollHeight > 20
+        ? this.text.scrollHeight + 6 + 'px'
+        : this.text.scrollHeight + 'px'
+  }
+
+  onFocus = () => this.setState({ focus: true }, () => this.text.focus())
 
   onBlur = () => this.setState({ focus: false })
 
   render() {
     const {
-      props: { width, value, label, hint, inputProps, onChange },
+      props: { type, width, value, label, hint, inputProps, onChange },
       state: { focus }
     } = this
     return (
@@ -25,14 +47,28 @@ export default class Input extends React.Component {
         <Label focus={focus} value={Boolean(value)} onClick={this.onFocus}>
           {label}
         </Label>
-        <input
-          {...inputProps}
-          ref={el => (this.input = el)}
-          value={value}
-          onChange={onChange}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-        />
+        {type === 'number' ? (
+          <input
+            type="number"
+            ref={el => (this.text = el)}
+            {...inputProps}
+            value={value}
+            onChange={onChange}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+          />
+        ) : (
+          <textarea
+            ref={el => (this.text = el)}
+            {...inputProps}
+            rows={1}
+            value={value}
+            onChange={onChange}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+          />
+        )}
+
         <div className="underline">
           <Underline focus={focus} />
         </div>

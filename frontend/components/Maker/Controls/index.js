@@ -22,7 +22,7 @@ export default class Controls extends React.Component {
   }
 
   setInitialState = () => {
-    const totalWidth = this.props.test.length * 44
+    const totalWidth = this.props.test.length * 55
     const width = this.row.clientWidth
     const shifts = Math.floor(totalWidth / width)
     this.setState({ shifts, width })
@@ -41,9 +41,21 @@ export default class Controls extends React.Component {
     }
   }
 
+  onAddQuestion = createQuestion => {
+    this.props.onCreateQuestion(createQuestion)
+    setTimeout(() => {
+      const x = this.props.test.length
+      this.props.setModeState(x - 1)
+      const totalWidth = x * 55
+      const width = this.row.clientWidth
+      const shifts = Math.floor(totalWidth / width)
+      this.setState({ shifts, shift: shifts })
+    }, 1000)
+  }
+
   render() {
     const {
-      props: { mode, id, test, setModeState, onCreateQuestion },
+      props: { mode, id, test, setModeState },
       state: { shifts, shift, width }
     } = this
     return (
@@ -51,14 +63,14 @@ export default class Controls extends React.Component {
         <Box highlight={mode === -1} onClick={() => setModeState(-1)}>
           <Tune className="tune" />
         </Box>
-        <AddQuestion id={id} onClick={onCreateQuestion} />
+        <AddQuestion id={id} onClick={this.onAddQuestion} />
         <ArrowBox disable={shifts === 0 || shift === 0} onClick={() => this.setShift(false)}>
           <KeyboardArrowLeft className="arrow" />
         </ArrowBox>
         <div ref={el => (this.row = el)} className="questions">
           <div className="wrapper">
             {test.map((q, i) => (
-              <Box key={q.id} onClick={() => setModeState(i)}>
+              <Box key={q.id} highlight={mode === i} onClick={() => setModeState(i)}>
                 {i + 1}
               </Box>
             ))}

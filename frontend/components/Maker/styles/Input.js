@@ -4,11 +4,15 @@ export const InputStyles = styled.div`
   position: relative;
   width: ${props => (props.width ? `${props.width}px` : '200px')};
   margin-bottom: 4rem;
-  input {
+  input,
+  textarea {
     width: 100%;
     border: 0;
-    font: 1.5rem 'Open Sans';
+    font: 1.3rem 'Open Sans';
     color: ${props => props.theme.black};
+    resize: none;
+    padding: 0;
+    margin: 0;
   }
   .underline {
     position: relative;
@@ -19,7 +23,7 @@ export const InputStyles = styled.div`
 
 export const Label = styled.span.attrs(props => ({
   style: {
-    bottom: props.focus || props.value ? '2.5rem' : '.3rem',
+    top: props.focus || props.value ? '-2rem' : '-.3rem',
     font: props.focus || props.value ? '1.1rem "Open Sans Semi"' : '1.5rem "Open Sans"',
     color: props.focus ? props.theme.black : props.theme.grey[5]
   }
@@ -46,7 +50,7 @@ export const Hint = styled.div.attrs(props => ({
   }
 }))`
   position: absolute;
-  top: 2.3rem;
+  bottom: -1.3rem;
   left: 0;
   font: 0.9rem 'Open Sans Semi';
 `
@@ -58,7 +62,7 @@ export const Length = styled.div.attrs(props => ({
   }
 }))`
   position: absolute;
-  top: 2.3rem;
+  bottom: -1.3rem;
   right: 0;
   font: 0.9rem 'Open Sans Semi';
 `

@@ -57,7 +57,7 @@ export default class ExamMaker extends React.Component {
 
   onUpdateExam = debounce(async updateExam => {
     const { id, title, code, pass, time, image } = this.state
-    const data = { title, code, pass, time, image }
+    const data = { title, code, pass: Number(pass), time: Number(time), image }
     await updateExam({
       variables: { id, data }
     })

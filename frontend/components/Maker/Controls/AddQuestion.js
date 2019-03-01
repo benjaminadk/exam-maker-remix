@@ -16,8 +16,8 @@ transform: rotate(360deg);
 `
 
 const SpinnerRed = styled(Spinner)`
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   animation: ${rotate} 1s infinite;
   color: ${props => props.theme.secondary} !important;
 `
