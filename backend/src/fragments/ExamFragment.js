@@ -13,6 +13,7 @@ module.exports = `
       id
       name
       image
+      homepage
     }
     cover {
       id

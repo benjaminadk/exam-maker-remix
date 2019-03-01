@@ -2,7 +2,7 @@ import { Query } from 'react-apollo'
 import { examById } from '../../apollo/query/exam'
 import CreateExam from './CreateExam'
 import ExamMaker from './ExamMaker'
-import Loading from '../Page/Loading'
+import Loading from '../Shared/Loading'
 
 export default class Maker extends React.Component {
   state = {

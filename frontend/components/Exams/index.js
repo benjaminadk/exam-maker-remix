@@ -1,9 +1,11 @@
 import styled from 'styled-components'
+import { darken } from 'polished'
 import { withApollo } from 'react-apollo'
 import { FileDownload } from 'styled-icons/material/FileDownload'
 import { examsByTerm } from '../../apollo/query/exams'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import SearchInput from './SearchInput'
+import Loading from '../Shared/Loading'
 import formatAgo from '../../lib/formatAgo'
 
 const ExamsStyles = styled.div``
@@ -20,7 +22,7 @@ const MainContent = styled.div`
 `
 
 const ExamCard = styled.div`
-  width: 45rem;
+  width: 50rem;
   display: grid;
   grid-template-columns: 5rem 1fr 3rem;
   grid-gap: 2rem;
@@ -28,6 +30,7 @@ const ExamCard = styled.div`
   padding: 1rem;
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
+  margin-bottom: 2rem;
   cursor: pointer;
   .image {
     width: 5rem;
@@ -35,10 +38,16 @@ const ExamCard = styled.div`
   }
   .main {
     .title {
+      width: 35rem;
       font: 1.75rem 'Open Sans Bold';
       color: ${props => props.theme.grey[12]};
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .description {
+      width: 35rem;
       font: 1.1rem 'Open Sans';
       text-align: justify;
       margin-bottom: 0.25rem;
@@ -51,9 +60,12 @@ const ExamCard = styled.div`
         color: ${props => props.theme.grey[5]};
       }
       .name {
-        font: 1rem 'Open Sans Semi';
-        color: ${props => props.theme.grey[5]};
+        font: 1rem 'Open Sans Bold';
+        color: ${props => props.theme.secondary};
         margin-right: 0.5rem;
+        &:hover {
+          color: ${props => darken(0.1, props.theme.secondary)};
+        }
       }
       .avatar {
         width: 2rem;
@@ -103,7 +115,7 @@ class Exams extends React.Component {
       state: { loading, exams, count, term, skip, first }
     } = this
     if (loading) {
-      return <div>loading</div>
+      return <Loading size={50} />
     }
     return (
       <ExamsStyles>
@@ -123,7 +135,9 @@ class Exams extends React.Component {
                     <span className="date">
                       Created {formatAgo(e.createdAt)} ago &nbsp;&bull;&nbsp;
                     </span>
-                    <span className="name">{e.user.name}</span>
+                    <a href={e.user.homepage} className="name">
+                      {e.user.name}
+                    </a>
                     <img className="avatar" src={e.user.image} />
                   </div>
                 </div>

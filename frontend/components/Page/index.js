@@ -7,7 +7,7 @@ import Meta from './Meta'
 import Header from '../Header'
 import User from './User'
 import SigninModal from '../Header/SigninModal'
-import Loading from './Loading'
+import Loading from '../Shared/Loading'
 
 const PageStyles = styled.div``
 

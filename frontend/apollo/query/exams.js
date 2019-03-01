@@ -37,6 +37,7 @@ export const examsByTerm = gql`
           id
           name
           image
+          homepage
         }
       }
       count
