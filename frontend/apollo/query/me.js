@@ -7,6 +7,7 @@ export const me = gql`
       name
       email
       image
+      homepage
       role
       createdAt
     }

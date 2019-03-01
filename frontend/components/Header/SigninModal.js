@@ -15,7 +15,7 @@ class SigninModal extends React.Component {
     const {
       profileObj: { googleId: googleID, email, imageUrl: image, name }
     } = response
-    const data = { googleID, email, name, image, role: 'USER' }
+    const data = { googleID, email, name, image, homepage: '', role: 'USER' }
     const res = await this.props.client.mutate({
       mutation: googleSignin,
       variables: { data },

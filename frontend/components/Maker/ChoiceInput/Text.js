@@ -8,10 +8,11 @@ export default ({ id, index, text, onChange }) => (
   <Mutation mutation={updateNode} refetchQueries={[{ query: examById, variables: { id } }]}>
     {(updateNode, { loading }) => (
       <Input
+        type="text"
         width={275}
         label={loading ? 'Saving...' : `Answer Text ${formatAnswerLabel(index)}`}
         value={text}
-        inputProps={{ type: 'text', name: 'text', spellCheck: false }}
+        inputProps={{ name: 'text', spellCheck: false }}
         onChange={e => onChange(e, updateNode)}
       />
     )}

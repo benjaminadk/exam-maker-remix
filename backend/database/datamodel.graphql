@@ -5,6 +5,7 @@ type User {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role! @default(value: "USER")
   exams: [Exam]
   createdAt: DateTime!
@@ -14,7 +15,7 @@ type Exam {
   id: ID! @unique
   published: Boolean! @default(value: "false")
   title: String!
-  description: String
+  description: String @default(value: "")
   code: String @default(value: "")
   pass: Int @default(value: "65")
   time: Int @default(value: "60")

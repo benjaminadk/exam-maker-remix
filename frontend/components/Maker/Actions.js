@@ -31,6 +31,8 @@ const ActionsStyles = styled.div`
   }
   .published {
     background: ${props => (props.published ? props.theme.primary : 'transparent')};
+    border: 2px solid ${props => (props.published ? props.theme.grey[10] : props.theme.grey[5])};
+    color: ${props => (props.published ? props.theme.grey[10] : props.theme.grey[5])};
   }
 `
 

@@ -26,6 +26,7 @@ type User {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role!
   exams: [Exam]
   createdAt: DateTime!

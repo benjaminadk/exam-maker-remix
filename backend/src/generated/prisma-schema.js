@@ -1593,6 +1593,7 @@ type User {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role!
   exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exam!]
   createdAt: DateTime!
@@ -1610,6 +1611,7 @@ input UserCreateInput {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role
   exams: ExamCreateManyWithoutUserInput
 }
@@ -1625,6 +1627,7 @@ input UserCreateWithoutExamsInput {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role
 }
 
@@ -1646,6 +1649,8 @@ enum UserOrderByInput {
   email_DESC
   image_ASC
   image_DESC
+  homepage_ASC
+  homepage_DESC
   role_ASC
   role_DESC
   createdAt_ASC
@@ -1661,6 +1666,7 @@ type UserPreviousValues {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role!
   createdAt: DateTime!
 }
@@ -1689,6 +1695,7 @@ input UserUpdateInput {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role
   exams: ExamUpdateManyWithoutUserInput
 }
@@ -1699,6 +1706,7 @@ input UserUpdateManyMutationInput {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role
 }
 
@@ -1717,6 +1725,7 @@ input UserUpdateWithoutExamsDataInput {
   password: String
   email: String
   image: String
+  homepage: String
   role: Role
 }
 
@@ -1810,6 +1819,20 @@ input UserWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  homepage: String
+  homepage_not: String
+  homepage_in: [String!]
+  homepage_not_in: [String!]
+  homepage_lt: String
+  homepage_lte: String
+  homepage_gt: String
+  homepage_gte: String
+  homepage_contains: String
+  homepage_not_contains: String
+  homepage_starts_with: String
+  homepage_not_starts_with: String
+  homepage_ends_with: String
+  homepage_not_ends_with: String
   role: Role
   role_not: Role
   role_in: [Role!]

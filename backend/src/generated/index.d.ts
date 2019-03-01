@@ -482,6 +482,8 @@ export type UserOrderByInput =
   | "email_DESC"
   | "image_ASC"
   | "image_DESC"
+  | "homepage_ASC"
+  | "homepage_DESC"
   | "role_ASC"
   | "role_DESC"
   | "createdAt_ASC"
@@ -999,6 +1001,7 @@ export interface UserUpdateInput {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role?: Role;
   exams?: ExamUpdateManyWithoutUserInput;
 }
@@ -1025,6 +1028,7 @@ export interface UserCreateInput {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role?: Role;
   exams?: ExamCreateManyWithoutUserInput;
 }
@@ -1035,6 +1039,7 @@ export interface UserCreateWithoutExamsInput {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role?: Role;
 }
 
@@ -1119,6 +1124,7 @@ export interface UserUpdateWithoutExamsDataInput {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role?: Role;
 }
 
@@ -1285,6 +1291,7 @@ export interface UserUpdateManyMutationInput {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role?: Role;
 }
 
@@ -1402,6 +1409,20 @@ export interface UserWhereInput {
   image_not_starts_with?: String;
   image_ends_with?: String;
   image_not_ends_with?: String;
+  homepage?: String;
+  homepage_not?: String;
+  homepage_in?: String[] | String;
+  homepage_not_in?: String[] | String;
+  homepage_lt?: String;
+  homepage_lte?: String;
+  homepage_gt?: String;
+  homepage_gte?: String;
+  homepage_contains?: String;
+  homepage_not_contains?: String;
+  homepage_starts_with?: String;
+  homepage_not_starts_with?: String;
+  homepage_ends_with?: String;
+  homepage_not_ends_with?: String;
   role?: Role;
   role_not?: Role;
   role_in?: Role[] | Role;
@@ -1898,6 +1919,7 @@ export interface UserPreviousValues {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role: Role;
   createdAt: DateTimeOutput;
 }
@@ -1911,6 +1933,7 @@ export interface UserPreviousValuesPromise
   password: () => Promise<String>;
   email: () => Promise<String>;
   image: () => Promise<String>;
+  homepage: () => Promise<String>;
   role: () => Promise<Role>;
   createdAt: () => Promise<DateTimeOutput>;
 }
@@ -1924,6 +1947,7 @@ export interface UserPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  homepage: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<Role>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -2494,6 +2518,7 @@ export interface User {
   password?: String;
   email?: String;
   image?: String;
+  homepage?: String;
   role: Role;
   createdAt: DateTimeOutput;
 }
@@ -2505,6 +2530,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   password: () => Promise<String>;
   email: () => Promise<String>;
   image: () => Promise<String>;
+  homepage: () => Promise<String>;
   role: () => Promise<Role>;
   exams: <T = FragmentableArray<Exam>>(
     args?: {
@@ -2529,6 +2555,7 @@ export interface UserSubscription
   password: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  homepage: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<Role>>;
   exams: <T = Promise<AsyncIterator<ExamSubscription>>>(
     args?: {

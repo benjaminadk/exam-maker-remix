@@ -4,7 +4,7 @@ export const examsByTerm = gql`
   query ExamsByTerm(
     $term: String
     $orderBy: ExamOrderByInput = createdAt_DESC
-    $first: Int = 20
+    $first: Int = 10
     $skip: Int = 0
   ) {
     exams(

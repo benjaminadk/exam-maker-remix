@@ -10,6 +10,6 @@ const SearchInputStyles = styled.div`
 
 export default () => (
   <SearchInputStyles>
-    <Input type="input" width={300} label="Search Exams" inputProps={{}} />
+    <Input type="input" width={300} label="Search Exams" inputProps={{ spellCheck: false }} />
   </SearchInputStyles>
 )
