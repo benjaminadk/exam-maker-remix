@@ -15,8 +15,8 @@ const ActionsStyles = styled.div`
     display: grid;
     justify-items: center;
     align-items: center;
-    border: 2px solid ${props => props.theme.grey[5]};
     border-radius: 2px;
+    border: 2px solid ${props => props.theme.grey[5]};
     color: ${props => props.theme.grey[5]};
     cursor: pointer;
     margin-right: 1rem;
@@ -25,16 +25,16 @@ const ActionsStyles = styled.div`
       color: ${props => props.theme.grey[10]};
       border: 2px solid ${props => props.theme.grey[10]};
     }
-    .published {
-      color: ${props => (props.published ? props.theme.primary : props.theme.grey[5])};
-    }
     svg {
       color: inherit;
     }
   }
+  .published {
+    background: ${props => (props.published ? props.theme.primary : 'transparent')};
+  }
 `
 
-export default ({ id, published }) => (
+export default ({ id, published, onDownloadExam }) => (
   <ActionsStyles published={published}>
     <Mutation
       mutation={updateExam}
@@ -42,15 +42,15 @@ export default ({ id, published }) => (
       refetchQueries={[{ query: examById, variables: { id } }]}
     >
       {(updateExam, { loading }) => (
-        <div className="action published" onClick={async () => updateExam()}>
+        <div className="action published" onClick={updateExam}>
           <Public size={20} />
         </div>
       )}
     </Mutation>
-    <div className="action">
+    <div className="action download" onClick={onDownloadExam}>
       <FileDownload size={20} />
     </div>
-    <div className="action">
+    <div className="action delete">
       <Delete size={20} />
     </div>
   </ActionsStyles>

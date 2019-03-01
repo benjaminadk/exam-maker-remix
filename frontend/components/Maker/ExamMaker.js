@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce'
 import MainForm from './MainForm'
 import QuestionForm from './QuestionForm'
 import Controls from './Controls'
+import downloadExam from '../../lib/downloadExam'
 
 const ExamMakerStyles = styled.div`
   height: calc(100vh - 6rem);
@@ -53,10 +54,6 @@ export default class ExamMaker extends React.Component {
     this.onUpdateExam(updateExam)
   }
 
-  onCreateQuestion = async createQuestion => {
-    await createQuestion()
-  }
-
   onUpdateExam = debounce(async updateExam => {
     const { id, title, code, pass, time, image } = this.state
     const data = { title, code, pass: Number(pass), time: Number(time), image }
@@ -64,6 +61,28 @@ export default class ExamMaker extends React.Component {
       variables: { id, data }
     })
   }, 5000)
+
+  onDownloadExam = () => {
+    const {
+      props: {
+        user: { name }
+      },
+      state: { id, published, title, code, time, pass, image, cover, test }
+    } = this
+    const exam = {
+      id,
+      author: name,
+      published,
+      title,
+      code,
+      time: Number(time),
+      pass: Number(pass),
+      image,
+      cover,
+      test
+    }
+    downloadExam(exam)
+  }
 
   render() {
     const {
@@ -83,17 +102,12 @@ export default class ExamMaker extends React.Component {
               image={image}
               cover={cover}
               onChange={this.onChange}
+              onDownloadExam={this.onDownloadExam}
             />
           ) : (
             <QuestionForm id={id} question={test[mode]} />
           )}
-          <Controls
-            mode={mode}
-            id={id}
-            test={test}
-            setModeState={this.setModeState}
-            onCreateQuestion={this.onCreateQuestion}
-          />
+          <Controls mode={mode} id={id} test={test} setModeState={this.setModeState} />
         </MainContent>
       </ExamMakerStyles>
     )

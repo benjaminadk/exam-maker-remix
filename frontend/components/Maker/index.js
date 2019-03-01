@@ -25,7 +25,8 @@ export default class Maker extends React.Component {
   render() {
     const {
       props: {
-        query: { id }
+        query: { id },
+        user
       },
       state: { loading, create }
     } = this
@@ -40,7 +41,7 @@ export default class Maker extends React.Component {
         {({ data, loading, error }) => {
           if (loading) return <Loading size={50} />
           if (error) return <div>{error.message}</div>
-          return <ExamMaker exam={data.exam} />
+          return <ExamMaker exam={data.exam} user={user} />
         }}
       </Query>
     )

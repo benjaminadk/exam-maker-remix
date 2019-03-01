@@ -15,14 +15,25 @@ const MainFormStyles = styled.div`
   grid-template-columns: 40% 60%;
 `
 
-export default ({ id, published, title, code, time, pass, image, cover, onChange }) => (
+export default ({
+  id,
+  published,
+  title,
+  code,
+  time,
+  pass,
+  image,
+  cover,
+  onChange,
+  onDownloadExam
+}) => (
   <MainFormStyles>
     <Center>
       <SubHeading>
         <span>Exam Properties</span>
         <span />
       </SubHeading>
-      <Actions id={id} published={published} />
+      <Actions id={id} published={published} onDownloadExam={onDownloadExam} />
       <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
         {(updateExam, { loading }) => (
           <Input

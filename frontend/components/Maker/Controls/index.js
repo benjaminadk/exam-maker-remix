@@ -41,8 +41,8 @@ export default class Controls extends React.Component {
     }
   }
 
-  onAddQuestion = createQuestion => {
-    this.props.onCreateQuestion(createQuestion)
+  onAddQuestion = async createQuestion => {
+    await createQuestion()
     setTimeout(() => {
       const x = this.props.test.length
       this.props.setModeState(x - 1)
