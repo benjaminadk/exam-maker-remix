@@ -10,6 +10,8 @@ module.exports = `
     createdAt
     user {
       id
+      name
+      image
     }
     cover {
       id

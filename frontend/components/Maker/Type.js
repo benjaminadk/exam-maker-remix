@@ -1,9 +1,9 @@
 import { ArrowDropDown } from 'styled-icons/material/ArrowDropDown'
 import isequal from 'lodash.isequal'
 import { Mutation } from 'react-apollo'
-import { updateQuestion } from '../../../apollo/mutation/updateQuestion'
-import { examById } from '../../../apollo/query/exam'
-import { TypeStyles, Options, Option } from '../styles/Type'
+import { updateQuestion } from '../../apollo/mutation/updateQuestion'
+import { examById } from '../../apollo/query/exam'
+import { TypeStyles, Options, Option } from './styles/Type'
 
 export default class Type extends React.Component {
   state = {

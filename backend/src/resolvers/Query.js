@@ -9,5 +9,10 @@ module.exports = {
       throw new Error('Access denied: Not exam owner')
     }
     return exam
+  },
+
+  exams: async (_, args, ctx, info) => {
+    const exams = await ctx.prisma.exams({ ...args }).$fragment(ExamFragment)
+    return exams
   }
 }

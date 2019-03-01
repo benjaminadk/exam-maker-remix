@@ -54,6 +54,7 @@ export default class CreateExam extends React.Component {
           {(createExam, { loading }) => (
             <MainContent>
               <Input
+                type="input"
                 width={300}
                 label="Exam Title"
                 value={title}

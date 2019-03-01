@@ -61,20 +61,23 @@ export default () => (
       <BannerBottom>
         <Card
           heading="What is this?"
-          text="Exam Maker is a standard created to empower students and teachers."
+          text="Exam Maker is an online test creation tool designed to empower students, teachers and developers."
           buttonText="get started"
           onClick={() => Router.push('/')}
         />
         <Card
-          heading="Exams"
-          text="Browse our catalog of exams made by the community."
+          heading="Exam Database"
+          text="Browse our catalog of free exams made by the community or create an exam yourself."
           buttonText="view exams"
           onClick={() => Router.push('/exams')}
         />
         <Card
-          heading="Open Source"
-          text="Every part of Exam Maker is open source, and available on GitHub"
-          buttonText="view on github"
+          heading="Exam Simulator"
+          text="Exam Simulator is a free and open source simulator and is available for Windows and MacOS."
+          buttonText="download"
+          onClick={() =>
+            window.open('https://exam-simulator.gitbook.io/project/installation', '_blank')
+          }
         />
       </BannerBottom>
     </div>

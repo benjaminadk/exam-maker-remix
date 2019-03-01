@@ -1,4 +1,4 @@
-import { InputStyles, Label, Underline, Hint, Length } from '../styles/Input'
+import { InputStyles, Label, Underline, Hint, Length } from './styles/Input'
 
 export default class Input extends React.Component {
   state = {
@@ -50,6 +50,16 @@ export default class Input extends React.Component {
         {type === 'number' ? (
           <input
             type="number"
+            ref={el => (this.text = el)}
+            {...inputProps}
+            value={value}
+            onChange={onChange}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+          />
+        ) : type === 'input' ? (
+          <input
+            type="text"
             ref={el => (this.text = el)}
             {...inputProps}
             value={value}
