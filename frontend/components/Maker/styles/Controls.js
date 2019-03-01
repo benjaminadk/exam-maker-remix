@@ -5,12 +5,22 @@ export const ControlsStyles = styled.div`
   bottom: 0;
   left: ${props => `calc(100vw - ${props.theme.maxWidth / 2})`};
   height: 6rem;
-  width: ${props => props.theme.maxWidth};
-  display: flex;
+  max-width: ${props => props.theme.maxWidth};
+  display: grid;
+  grid-template-columns: 4.4rem 4.4rem 4.4rem 1fr 5rem;
+  grid-gap: 1rem;
   align-items: center;
   background: ${props => props.theme.grey[0]};
-  & > :first-child {
-    margin-left: 1rem;
+  .questions {
+    overflow: hidden;
+    .wrapper {
+      display: grid;
+      grid-template-columns: ${props => `repeat(${props.items}, 4.4rem)`};
+      grid-gap: 1rem;
+      align-items: center;
+      transform: ${props => `translateX(-${props.width * props.shift}px)`};
+      transition: 1s cubic-bezier(0, 1, 1, 1);
+    }
   }
 `
 
@@ -26,16 +36,28 @@ export const Box = styled.div`
   outline: 2px solid ${props => (props.highlight ? props.theme.primary : 'transparent')};
   color: ${props => props.theme.grey[5]};
   font: 1.5rem 'Open Sans Semi';
-  margin-right: 1rem;
   cursor: pointer;
+  margin: 0.2rem;
   &:hover {
     outline: 2px solid ${props => props.theme.primary};
     border: 2px solid ${props => props.theme.grey[10]};
     color: ${props => props.theme.grey[10]};
   }
-  svg {
+  .add,
+  .tune,
+  .arrow {
     width: 2rem;
     height: 2rem;
     color: inherit;
+  }
+`
+
+export const ArrowBox = styled(Box)`
+  border: 2px solid ${props => (props.disable ? props.theme.grey[2] : props.theme.grey[5])};
+  color: ${props => (props.disable ? props.theme.grey[2] : props.theme.grey[5])};
+  &:hover {
+    outline: 2px solid ${props => (props.disable ? 'transparent' : props.theme.primary)};
+    border: 2px solid ${props => (props.disable ? props.theme.grey[2] : props.theme.grey[10])};
+    color: ${props => (props.disable ? props.theme.grey[2] : props.theme.grey[10])};
   }
 `

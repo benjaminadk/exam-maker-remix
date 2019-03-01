@@ -20,12 +20,25 @@ export default class CreateExam extends React.Component {
 
   onChange = ({ target: { name, value } }) => this.setState({ [name]: value })
 
-  onCreateExam = async createExam => {
+  onClick = async createExam => {
     const { title } = this.state
     const res = await createExam({
       variables: { data: { title } }
     })
     Router.push({ pathname: '/maker', query: { id: res.data.createExam.id } })
+  }
+
+  onKeyDown = async ({ keyCode }, createExam) => {
+    if (keyCode === 13) {
+      const { title } = this.state
+      if (!title) {
+        return alert('Exam title is required')
+      }
+      const res = await createExam({
+        variables: { data: { title } }
+      })
+      Router.push({ pathname: '/maker', query: { id: res.data.createExam.id } })
+    }
   }
 
   render() {
@@ -37,31 +50,32 @@ export default class CreateExam extends React.Component {
         <BannerTop>
           <BannerTitle>Create Exam</BannerTitle>
         </BannerTop>
-        <MainContent>
-          <Input
-            width={300}
-            label="Exam Title"
-            value={title}
-            inputProps={{
-              type: 'text',
-              name: 'title',
-              maxLength: 50,
-              autoFocus: true,
-              spellCheck: false
-            }}
-            onChange={this.onChange}
-          />
-          <Mutation mutation={createExam}>
-            {(createExam, { loading }) => (
+        <Mutation mutation={createExam}>
+          {(createExam, { loading }) => (
+            <MainContent>
+              <Input
+                width={300}
+                label="Exam Title"
+                value={title}
+                inputProps={{
+                  type: 'text',
+                  name: 'title',
+                  maxLength: 50,
+                  autoFocus: true,
+                  spellCheck: false,
+                  onKeyDown: e => this.onKeyDown(e, createExam)
+                }}
+                onChange={this.onChange}
+              />
               <RedButton
                 disabled={loading || !Boolean(title)}
-                onClick={() => this.onCreateExam(createExam)}
+                onClick={() => this.onClick(createExam)}
               >
                 create exam
               </RedButton>
-            )}
-          </Mutation>
-        </MainContent>
+            </MainContent>
+          )}
+        </Mutation>
       </CreateExamStyles>
     )
   }
