@@ -6,6 +6,7 @@ export const examById = gql`
       id
       published
       title
+      description
       code
       pass
       time

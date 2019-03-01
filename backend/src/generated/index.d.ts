@@ -454,6 +454,8 @@ export type ExamOrderByInput =
   | "published_DESC"
   | "title_ASC"
   | "title_DESC"
+  | "description_ASC"
+  | "description_DESC"
   | "code_ASC"
   | "code_DESC"
   | "pass_ASC"
@@ -624,6 +626,7 @@ export interface ExamSubscriptionWhereInput {
 export interface ExamCreateInput {
   published?: Boolean;
   title: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -718,6 +721,7 @@ export interface QuestionCreateInput {
 export interface ExamUpdateManyDataInput {
   published?: Boolean;
   title?: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -760,6 +764,20 @@ export interface ExamScalarWhereInput {
   title_not_starts_with?: String;
   title_ends_with?: String;
   title_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
   code?: String;
   code_not?: String;
   code_in?: String[] | String;
@@ -825,6 +843,7 @@ export interface QuestionNodeCreateInput {
 export interface ExamUpdateWithoutUserDataInput {
   published?: Boolean;
   title?: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -869,6 +888,20 @@ export interface ExamWhereInput {
   title_not_starts_with?: String;
   title_ends_with?: String;
   title_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
   code?: String;
   code_not?: String;
   code_in?: String[] | String;
@@ -1013,6 +1046,7 @@ export interface QuestionNodeUpdateInput {
 export interface ExamUpdateInput {
   published?: Boolean;
   title?: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -1396,6 +1430,7 @@ export interface QuestionNodeUpdateDataInput {
 export interface ExamCreateWithoutUserInput {
   published?: Boolean;
   title: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -1473,6 +1508,7 @@ export interface QuestionNodeUpdateManyWithWhereNestedInput {
 export interface ExamUpdateManyMutationInput {
   published?: Boolean;
   title?: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -2282,6 +2318,7 @@ export interface Exam {
   id: ID_Output;
   published: Boolean;
   title: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -2293,6 +2330,7 @@ export interface ExamPromise extends Promise<Exam>, Fragmentable {
   id: () => Promise<ID_Output>;
   published: () => Promise<Boolean>;
   title: () => Promise<String>;
+  description: () => Promise<String>;
   code: () => Promise<String>;
   pass: () => Promise<Int>;
   time: () => Promise<Int>;
@@ -2329,6 +2367,7 @@ export interface ExamSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   published: () => Promise<AsyncIterator<Boolean>>;
   title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
   code: () => Promise<AsyncIterator<String>>;
   pass: () => Promise<AsyncIterator<Int>>;
   time: () => Promise<AsyncIterator<Int>>;
@@ -2587,6 +2626,7 @@ export interface ExamPreviousValues {
   id: ID_Output;
   published: Boolean;
   title: String;
+  description?: String;
   code?: String;
   pass?: Int;
   time?: Int;
@@ -2600,6 +2640,7 @@ export interface ExamPreviousValuesPromise
   id: () => Promise<ID_Output>;
   published: () => Promise<Boolean>;
   title: () => Promise<String>;
+  description: () => Promise<String>;
   code: () => Promise<String>;
   pass: () => Promise<Int>;
   time: () => Promise<Int>;
@@ -2613,6 +2654,7 @@ export interface ExamPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   published: () => Promise<AsyncIterator<Boolean>>;
   title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
   code: () => Promise<AsyncIterator<String>>;
   pass: () => Promise<AsyncIterator<Int>>;
   time: () => Promise<AsyncIterator<Int>>;

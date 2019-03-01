@@ -27,6 +27,7 @@ export const examsByTerm = gql`
       exams {
         id
         title
+        description
         code
         pass
         time

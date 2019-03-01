@@ -3,6 +3,7 @@ module.exports = `
     id
     published
     title
+    description
     code
     pass
     time

@@ -453,6 +453,7 @@ type Exam {
   id: ID!
   published: Boolean!
   title: String!
+  description: String
   code: String
   pass: Int
   time: Int
@@ -472,6 +473,7 @@ type ExamConnection {
 input ExamCreateInput {
   published: Boolean
   title: String!
+  description: String
   code: String
   pass: Int
   time: Int
@@ -489,6 +491,7 @@ input ExamCreateManyWithoutUserInput {
 input ExamCreateWithoutUserInput {
   published: Boolean
   title: String!
+  description: String
   code: String
   pass: Int
   time: Int
@@ -509,6 +512,8 @@ enum ExamOrderByInput {
   published_DESC
   title_ASC
   title_DESC
+  description_ASC
+  description_DESC
   code_ASC
   code_DESC
   pass_ASC
@@ -527,6 +532,7 @@ type ExamPreviousValues {
   id: ID!
   published: Boolean!
   title: String!
+  description: String
   code: String
   pass: Int
   time: Int
@@ -565,6 +571,20 @@ input ExamScalarWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   code: String
   code_not: String
   code_in: [String!]
@@ -643,6 +663,7 @@ input ExamSubscriptionWhereInput {
 input ExamUpdateInput {
   published: Boolean
   title: String
+  description: String
   code: String
   pass: Int
   time: Int
@@ -655,6 +676,7 @@ input ExamUpdateInput {
 input ExamUpdateManyDataInput {
   published: Boolean
   title: String
+  description: String
   code: String
   pass: Int
   time: Int
@@ -664,6 +686,7 @@ input ExamUpdateManyDataInput {
 input ExamUpdateManyMutationInput {
   published: Boolean
   title: String
+  description: String
   code: String
   pass: Int
   time: Int
@@ -690,6 +713,7 @@ input ExamUpdateManyWithWhereNestedInput {
 input ExamUpdateWithoutUserDataInput {
   published: Boolean
   title: String
+  description: String
   code: String
   pass: Int
   time: Int
@@ -740,6 +764,20 @@ input ExamWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   code: String
   code_not: String
   code_in: [String!]
