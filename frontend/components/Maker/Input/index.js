@@ -23,7 +23,7 @@ export default class Input extends React.Component {
     this.text.style.height = 'auto'
     this.text.style.height =
       this.text.scrollHeight > 20
-        ? this.text.scrollHeight + 6 + 'px'
+        ? this.text.scrollHeight + 2 + 'px'
         : this.text.scrollHeight + 'px'
   }
 
@@ -68,7 +68,6 @@ export default class Input extends React.Component {
             onBlur={this.onBlur}
           />
         )}
-
         <div className="underline">
           <Underline focus={focus} />
         </div>

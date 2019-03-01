@@ -5,7 +5,7 @@ export const ControlsStyles = styled.div`
   bottom: 0;
   left: ${props => `calc(100vw - ${props.theme.maxWidth / 2})`};
   height: 6rem;
-  max-width: ${props => props.theme.maxWidth};
+  width: ${props => props.theme.maxWidth};
   display: grid;
   grid-template-columns: 4.4rem 4.4rem 4.4rem 1fr 5rem;
   grid-gap: 1rem;

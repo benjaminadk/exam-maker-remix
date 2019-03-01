@@ -37,9 +37,10 @@ export default class Maker extends React.Component {
     }
     return (
       <Query query={examById} variables={{ id }}>
-        {({ data: { exam }, loading }) => {
+        {({ data, loading, error }) => {
           if (loading) return <Loading size={50} />
-          return <ExamMaker exam={exam} />
+          if (error) return <div>{error.message}</div>
+          return <ExamMaker exam={data.exam} />
         }}
       </Query>
     )

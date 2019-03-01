@@ -11,6 +11,7 @@ export const InputStyles = styled.div`
     font: 1.3rem 'Open Sans';
     color: ${props => props.theme.black};
     resize: none;
+    overflow: hidden;
     padding: 0;
     margin: 0;
   }
