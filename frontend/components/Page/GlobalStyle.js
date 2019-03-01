@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import theme from './theme'
 
 export default createGlobalStyle`
   @font-face {
@@ -55,25 +56,25 @@ export default createGlobalStyle`
 	outline: 0;
 	}
   html {
-    font-family: 'Roboto';
-    font-size: 10px;
+    font-family: 'Open Sans';
+    font-size: ${theme.baseFontSize};
     overflow-y: scroll;
   }
   body {
-    background: white;
+    background: ${theme.white};
     line-height: 1;
-    color: #333;
+    color: ${theme.black};
     }
   ol, ul {
     list-style: none;
     }
   button {
     border: 0;
-    border-radius: 3px;
+    border-radius: ${theme.borderRadius};
   }
   a {
     text-decoration: none;
-    color: #333;
+    color: ${theme.black};
   }
   /* tables still need cellspacing="0" in the markup */
   table {
@@ -91,11 +92,21 @@ export default createGlobalStyle`
   blockquote, q {
     quotes: "" "";
     }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: ${theme.grey[0]};
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${theme.grey[5]};
+  } 
   #nprogress {
     pointer-events: none;
     }
   #nprogress .bar {
-    background: #DE4545;
+    background: ${theme.secondary};
     position: fixed;
     z-index: 1031;
     top: 0;
@@ -110,7 +121,7 @@ export default createGlobalStyle`
     right: 0px;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px #DE4545, 0 0 5px #DE4545;
+    box-shadow: 0 0 10px ${theme.secondary}, 0 0 5px ${theme.secondary};
     opacity: 1;
     -webkit-transform: rotate(3deg) translate(0px, -4px);
     -ms-transform: rotate(3deg) translate(0px, -4px);

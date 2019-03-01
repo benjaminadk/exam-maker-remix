@@ -1,5 +1,7 @@
 export default {
   maxWidth: '960px',
+  baseFontSize: '10px',
+  borderRadius: '3px',
   primary: '#FFF28F',
   secondary: '#DE4545',
   grey: [
