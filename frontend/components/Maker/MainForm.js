@@ -6,7 +6,7 @@ import { createNode } from '../../apollo/mutation/createNode'
 import { examById } from '../../apollo/query/exam'
 import { Center } from './styles/Center'
 import { SubHeading } from './styles/SubHeading'
-import Input from './Input'
+import Input from '../Shared/Input'
 import NodeInput from './NodeInput'
 import Actions from './Actions'
 
@@ -19,6 +19,7 @@ export default ({
   id,
   published,
   title,
+  description,
   code,
   time,
   pass,
@@ -37,7 +38,7 @@ export default ({
       <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
         {(updateExam, { loading }) => (
           <Input
-            type="text"
+            type="input"
             width={300}
             label={loading ? 'Saving...' : 'Title'}
             value={title}
@@ -50,6 +51,18 @@ export default ({
         {(updateExam, { loading }) => (
           <Input
             type="text"
+            width={300}
+            label={loading ? 'Saving...' : 'Description'}
+            value={description}
+            inputProps={{ name: 'description', maxLength: 280, spellCheck: false }}
+            onChange={e => onChange(e, updateExam)}
+          />
+        )}
+      </Mutation>
+      <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
+        {(updateExam, { loading }) => (
+          <Input
+            type="input"
             width={300}
             label={loading ? 'Saving...' : 'Code'}
             hint="Certification Code e.g. 601-902"
@@ -88,7 +101,7 @@ export default ({
       <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
         {(updateExam, { loading }) => (
           <Input
-            type="text"
+            type="input"
             width={300}
             label={loading ? 'Saving...' : 'Logo URL'}
             hint="Image with 1:1 size ratio"

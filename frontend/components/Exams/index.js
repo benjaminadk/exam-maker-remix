@@ -1,8 +1,23 @@
 import styled from 'styled-components'
 import { withApollo } from 'react-apollo'
 import { examsByTerm } from '../../apollo/query/exams'
+import { BannerTop, BannerTitle } from '../Shared/Banner'
+import SearchInput from './SearchInput'
 
 const ExamsStyles = styled.div``
+
+const MainContent = styled.div`
+  width: ${props => props.theme.maxWidth};
+  margin: 0 auto;
+  background: ${props => props.theme.white};
+`
+
+const ExamCard = styled.div`
+  img {
+    width: 5rem;
+    height: 5rem;
+  }
+`
 
 class Exams extends React.Component {
   state = {
@@ -24,7 +39,8 @@ class Exams extends React.Component {
       query: examsByTerm,
       variables: { term }
     })
-    this.setState({ loading: false, exams: res.data })
+    const { exams, count } = res.data.exams
+    this.setState({ loading: false, exams, count })
   }
 
   render() {
@@ -34,7 +50,24 @@ class Exams extends React.Component {
     if (loading) {
       return <div>loading</div>
     }
-    return <ExamsStyles>{JSON.stringify(exams)}</ExamsStyles>
+    return (
+      <ExamsStyles>
+        <BannerTop>
+          <BannerTitle>Exams</BannerTitle>
+        </BannerTop>
+        <MainContent>
+          <SearchInput />
+          <div>
+            {exams.map((e, i) => (
+              <ExamCard key={e.id}>
+                <div>{e.title}</div>
+                <img src={e.image || e.user.image} />
+              </ExamCard>
+            ))}
+          </div>
+        </MainContent>
+      </ExamsStyles>
+    )
   }
 }
 

@@ -8,7 +8,7 @@ import { Image } from 'styled-icons/material/Image'
 import { Title } from 'styled-icons/material/Title'
 import { Delete } from 'styled-icons/material/Delete'
 import { NodeInputStyles, Option } from '../styles/NodeInput'
-import Input from '../Input'
+import Input from '../../Shared/Input'
 
 export default class NodeInput extends React.Component {
   state = {

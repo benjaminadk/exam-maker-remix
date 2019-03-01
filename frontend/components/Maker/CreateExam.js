@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo'
 import { createExam } from '../../apollo/mutation/createExam'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import { RedButton } from '../Shared/RedButton'
-import Input from './Input'
+import Input from '../Shared/Input'
 
 const CreateExamStyles = styled.div``
 

@@ -13,6 +13,10 @@ module.exports = {
 
   exams: async (_, args, ctx, info) => {
     const exams = await ctx.prisma.exams({ ...args }).$fragment(ExamFragment)
-    return exams
+    const connection = await ctx.prisma.examsConnection({ where: args.where })
+    return {
+      exams,
+      count: connection.edges.length
+    }
   }
 }

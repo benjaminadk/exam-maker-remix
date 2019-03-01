@@ -1,4 +1,4 @@
-import { InputStyles, Label, Underline, Hint, Length } from './styles/Input'
+import { InputStyles, Label, Underline, Hint, Length } from './styles'
 
 export default class Input extends React.Component {
   state = {

@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 export const examsByTerm = gql`
   query ExamsByTerm(
     $term: String
-    $orderBy: ExamOrderByInput = title_ASC
+    $orderBy: ExamOrderByInput = createdAt_DESC
     $first: Int = 20
     $skip: Int = 0
   ) {
@@ -15,7 +15,7 @@ export const examsByTerm = gql`
             OR: [
               { title_contains: $term }
               { code_contains: $term }
-              # { test_some: { question_some: { text_contains: $term } } }
+              { test_some: { question_some: { text_contains: $term } } }
             ]
           }
         ]
@@ -24,18 +24,21 @@ export const examsByTerm = gql`
       first: $first
       skip: $skip
     ) {
-      id
-      title
-      code
-      pass
-      time
-      image
-      createdAt
-      user {
+      exams {
         id
-        name
+        title
+        code
+        pass
+        time
         image
+        createdAt
+        user {
+          id
+          name
+          image
+        }
       }
+      count
     }
   }
 `

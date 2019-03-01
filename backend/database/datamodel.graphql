@@ -14,6 +14,7 @@ type Exam {
   id: ID! @unique
   published: Boolean! @default(value: "false")
   title: String!
+  description: String
   code: String @default(value: "")
   pass: Int @default(value: "65")
   time: Int @default(value: "60")

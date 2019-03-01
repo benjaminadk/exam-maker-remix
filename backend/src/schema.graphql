@@ -3,7 +3,7 @@
 type Query {
   me: User
   exam(id: ID!): Exam
-  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, first: Int): [Exam]
+  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, first: Int): ExamPayload
 }
 
 type Mutation {
@@ -35,6 +35,7 @@ type Exam {
   id: ID!
   published: Boolean!
   title: String!
+  description: String
   code: String
   pass: Int
   time: Int
@@ -81,6 +82,11 @@ type ExplanationNode {
 
 type Payload {
   success: Boolean
+}
+
+type ExamPayload {
+  exams: [Exam]
+  count: Int
 }
 
 enum Role {

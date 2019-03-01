@@ -24,6 +24,7 @@ export default class ExamMaker extends React.Component {
     id: '',
     published: false,
     title: '',
+    description: '',
     code: '',
     pass: '',
     time: '',
@@ -43,8 +44,19 @@ export default class ExamMaker extends React.Component {
   }
 
   setExamState = () => {
-    const { id, published, title, code, pass, time, image, cover, test } = this.props.exam
-    this.setState({ id, published, title, code, pass, time, image, cover, test })
+    const {
+      id,
+      published,
+      title,
+      description,
+      code,
+      pass,
+      time,
+      image,
+      cover,
+      test
+    } = this.props.exam
+    this.setState({ id, published, title, description, code, pass, time, image, cover, test })
   }
 
   setModeState = mode => this.setState({ mode })
@@ -55,8 +67,8 @@ export default class ExamMaker extends React.Component {
   }
 
   onUpdateExam = debounce(async updateExam => {
-    const { id, title, code, pass, time, image } = this.state
-    const data = { title, code, pass: Number(pass), time: Number(time), image }
+    const { id, title, description, code, pass, time, image } = this.state
+    const data = { title, description, code, pass: Number(pass), time: Number(time), image }
     await updateExam({
       variables: { id, data }
     })
@@ -86,7 +98,7 @@ export default class ExamMaker extends React.Component {
 
   render() {
     const {
-      state: { id, published, mode, title, code, time, pass, image, cover, test }
+      state: { id, published, mode, title, description, code, time, pass, image, cover, test }
     } = this
     return (
       <ExamMakerStyles>
@@ -96,6 +108,7 @@ export default class ExamMaker extends React.Component {
               id={id}
               published={published}
               title={title}
+              description={description}
               code={code}
               time={time}
               pass={pass}
