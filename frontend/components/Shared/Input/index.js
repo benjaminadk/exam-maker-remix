@@ -7,6 +7,9 @@ export default class Input extends React.Component {
 
   componentDidMount() {
     this.text.addEventListener('input', this.resize)
+    if (this.text.scrollHeight > 20) {
+      this.resize()
+    }
   }
 
   componentDidUpdate(prevProps) {
