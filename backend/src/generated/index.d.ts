@@ -464,6 +464,8 @@ export type ExamOrderByInput =
   | "time_DESC"
   | "image_ASC"
   | "image_DESC"
+  | "downloads_ASC"
+  | "downloads_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -633,6 +635,7 @@ export interface ExamCreateInput {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
   cover?: CoverNodeCreateManyInput;
   test?: QuestionCreateManyInput;
   user?: UserCreateOneWithoutExamsInput;
@@ -728,6 +731,7 @@ export interface ExamUpdateManyDataInput {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
 }
 
 export interface QuestionNodeCreateManyInput {
@@ -824,6 +828,14 @@ export interface ExamScalarWhereInput {
   image_not_starts_with?: String;
   image_ends_with?: String;
   image_not_ends_with?: String;
+  downloads?: Int;
+  downloads_not?: Int;
+  downloads_in?: Int[] | Int;
+  downloads_not_in?: Int[] | Int;
+  downloads_lt?: Int;
+  downloads_lte?: Int;
+  downloads_gt?: Int;
+  downloads_gte?: Int;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -850,6 +862,7 @@ export interface ExamUpdateWithoutUserDataInput {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
   cover?: CoverNodeUpdateManyInput;
   test?: QuestionUpdateManyInput;
 }
@@ -948,6 +961,14 @@ export interface ExamWhereInput {
   image_not_starts_with?: String;
   image_ends_with?: String;
   image_not_ends_with?: String;
+  downloads?: Int;
+  downloads_not?: Int;
+  downloads_in?: Int[] | Int;
+  downloads_not_in?: Int[] | Int;
+  downloads_lt?: Int;
+  downloads_lte?: Int;
+  downloads_gt?: Int;
+  downloads_gte?: Int;
   cover_every?: CoverNodeWhereInput;
   cover_some?: CoverNodeWhereInput;
   cover_none?: CoverNodeWhereInput;
@@ -1056,6 +1077,7 @@ export interface ExamUpdateInput {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
   cover?: CoverNodeUpdateManyInput;
   test?: QuestionUpdateManyInput;
   user?: UserUpdateOneWithoutExamsInput;
@@ -1456,6 +1478,7 @@ export interface ExamCreateWithoutUserInput {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
   cover?: CoverNodeCreateManyInput;
   test?: QuestionCreateManyInput;
 }
@@ -1534,6 +1557,7 @@ export interface ExamUpdateManyMutationInput {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
 }
 
 export interface QuestionNodeUpdateManyDataInput {
@@ -2347,6 +2371,7 @@ export interface Exam {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
   createdAt: DateTimeOutput;
 }
 
@@ -2359,6 +2384,7 @@ export interface ExamPromise extends Promise<Exam>, Fragmentable {
   pass: () => Promise<Int>;
   time: () => Promise<Int>;
   image: () => Promise<String>;
+  downloads: () => Promise<Int>;
   cover: <T = FragmentableArray<CoverNode>>(
     args?: {
       where?: CoverNodeWhereInput;
@@ -2396,6 +2422,7 @@ export interface ExamSubscription
   pass: () => Promise<AsyncIterator<Int>>;
   time: () => Promise<AsyncIterator<Int>>;
   image: () => Promise<AsyncIterator<String>>;
+  downloads: () => Promise<AsyncIterator<Int>>;
   cover: <T = Promise<AsyncIterator<CoverNodeSubscription>>>(
     args?: {
       where?: CoverNodeWhereInput;
@@ -2658,6 +2685,7 @@ export interface ExamPreviousValues {
   pass?: Int;
   time?: Int;
   image?: String;
+  downloads?: Int;
   createdAt: DateTimeOutput;
 }
 
@@ -2672,6 +2700,7 @@ export interface ExamPreviousValuesPromise
   pass: () => Promise<Int>;
   time: () => Promise<Int>;
   image: () => Promise<String>;
+  downloads: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
 }
 
@@ -2686,6 +2715,7 @@ export interface ExamPreviousValuesSubscription
   pass: () => Promise<AsyncIterator<Int>>;
   time: () => Promise<AsyncIterator<Int>>;
   image: () => Promise<AsyncIterator<String>>;
+  downloads: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 

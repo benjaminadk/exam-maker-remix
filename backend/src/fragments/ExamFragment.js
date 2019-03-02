@@ -8,6 +8,7 @@ module.exports = `
     pass
     time
     image
+    downloads
     createdAt
     user {
       id

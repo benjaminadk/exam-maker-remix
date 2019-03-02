@@ -458,6 +458,7 @@ type Exam {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   cover(where: CoverNodeWhereInput, orderBy: CoverNodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CoverNode!]
   test(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question!]
   user: User
@@ -478,6 +479,7 @@ input ExamCreateInput {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   cover: CoverNodeCreateManyInput
   test: QuestionCreateManyInput
   user: UserCreateOneWithoutExamsInput
@@ -496,6 +498,7 @@ input ExamCreateWithoutUserInput {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   cover: CoverNodeCreateManyInput
   test: QuestionCreateManyInput
 }
@@ -522,6 +525,8 @@ enum ExamOrderByInput {
   time_DESC
   image_ASC
   image_DESC
+  downloads_ASC
+  downloads_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -537,6 +542,7 @@ type ExamPreviousValues {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   createdAt: DateTime!
 }
 
@@ -629,6 +635,14 @@ input ExamScalarWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  downloads: Int
+  downloads_not: Int
+  downloads_in: [Int!]
+  downloads_not_in: [Int!]
+  downloads_lt: Int
+  downloads_lte: Int
+  downloads_gt: Int
+  downloads_gte: Int
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -668,6 +682,7 @@ input ExamUpdateInput {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   cover: CoverNodeUpdateManyInput
   test: QuestionUpdateManyInput
   user: UserUpdateOneWithoutExamsInput
@@ -681,6 +696,7 @@ input ExamUpdateManyDataInput {
   pass: Int
   time: Int
   image: String
+  downloads: Int
 }
 
 input ExamUpdateManyMutationInput {
@@ -691,6 +707,7 @@ input ExamUpdateManyMutationInput {
   pass: Int
   time: Int
   image: String
+  downloads: Int
 }
 
 input ExamUpdateManyWithoutUserInput {
@@ -718,6 +735,7 @@ input ExamUpdateWithoutUserDataInput {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   cover: CoverNodeUpdateManyInput
   test: QuestionUpdateManyInput
 }
@@ -822,6 +840,14 @@ input ExamWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  downloads: Int
+  downloads_not: Int
+  downloads_in: [Int!]
+  downloads_not_in: [Int!]
+  downloads_lt: Int
+  downloads_lte: Int
+  downloads_gt: Int
+  downloads_gte: Int
   cover_every: CoverNodeWhereInput
   cover_some: CoverNodeWhereInput
   cover_none: CoverNodeWhereInput

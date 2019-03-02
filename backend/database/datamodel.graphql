@@ -20,6 +20,7 @@ type Exam {
   pass: Int @default(value: "65")
   time: Int @default(value: "60")
   image: String @default(value: "")
+  downloads: Int @default(value: "0")
   cover: [CoverNode]
   test: [Question]
   user: User

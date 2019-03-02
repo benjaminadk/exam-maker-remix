@@ -41,6 +41,7 @@ type Exam {
   pass: Int
   time: Int
   image: String
+  downloads: Int
   cover: [CoverNode]
   test: [Question]
   user: User
