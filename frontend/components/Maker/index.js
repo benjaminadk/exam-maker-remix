@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import { Query } from 'react-apollo'
 import { examById } from '../../apollo/query/exam'
 import CreateExam from './CreateExam'
@@ -20,7 +21,19 @@ export default class Maker extends React.Component {
     }
   }
 
-  setMode = () => this.setState({ loading: false, create: !Boolean(this.props.query.id) })
+  setMode = () => {
+    const {
+      query,
+      user: { exams }
+    } = this.props
+    const examIds = exams.map(e => e.id)
+    const isOwner = examIds.includes(query.id)
+    if (isOwner) {
+      this.setState({ loading: false, create: !Boolean(query.id) })
+    } else {
+      Router.push('/')
+    }
+  }
 
   render() {
     const {

@@ -36,7 +36,7 @@ export default class UserMenu extends React.Component {
         </div>
         <div className="item" onClick={this.onExamsClick}>
           <School size={15} />
-          <span>Exams</span>
+          <span>My Exams</span>
         </div>
         <Mutation mutation={signout} refetchQueries={[{ query: me }]}>
           {(signout, { loading }) => (

@@ -1,7 +1,20 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { darken } from 'polished'
 
+function highlight() {
+  return css`
+    font: 0.75rem 'Open Sans Bold';
+    text-transform: uppercase;
+    color: ${props => props.theme.grey[5]};
+    border: 1px solid ${props => props.theme.grey[2]};
+    border-radius: ${props => props.theme.borderRadius};
+    background: ${props => props.theme.grey[0]};
+    transition: 0.3s;
+  `
+}
+
 export const ExamCardStyles = styled.div`
+  position: relative;
   width: 55rem;
   display: grid;
   grid-template-columns: 5rem 1fr 5rem;
@@ -11,18 +24,31 @@ export const ExamCardStyles = styled.div`
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
   margin-bottom: 2rem;
+  .edit {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    ${highlight()}
+    &:hover {
+      color: ${props => props.theme.grey[10]};
+      border: 1px solid ${props => props.theme.grey[10]};
+    }
+    & > :first-child {
+      margin-right: 0.5rem;
+    }
+  }
   .image {
     width: 5rem;
     height: 5rem;
   }
   .main {
     .code {
-      font: 0.75rem 'Open Sans';
-      border: 1px solid ${props => props.theme.grey[2]};
-      border-radius: ${props => props.theme.borderRadius};
+      ${highlight()}
       padding: 0.1rem 0.25rem;
-      background: ${props => props.theme.grey[0]};
-      color: ${props => props.theme.grey[5]};
     }
     .title {
       width: 40rem;
@@ -77,7 +103,10 @@ export const ExamCardStyles = styled.div`
       color: ${props => props.theme.grey[10]};
     }
     svg {
-      color: inherit;
+      color: ${props => props.theme.grey[5]};
+      &:hover {
+        color: ${props => props.theme.grey[10]};
+      }
     }
     span {
       width: 1.5rem;

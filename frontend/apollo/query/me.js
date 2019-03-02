@@ -21,6 +21,12 @@ export const me = gql`
         image
         downloads
         createdAt
+        user {
+          id
+          name
+          image
+          homepage
+        }
         cover {
           id
           variant

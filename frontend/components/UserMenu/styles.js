@@ -4,7 +4,8 @@ export const MenuStyles = styled.div`
   position: absolute;
   top: 4rem;
   right: 0rem;
-  width: 10rem;
+  z-index: 1;
+  width: 13rem;
   display: ${props => (props.show ? 'block' : 'none')};
   background: ${props => props.theme.white};
   border-radius: ${props => props.theme.borderRadius};

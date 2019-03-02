@@ -18,6 +18,12 @@ module.exports = `
       image
       downloads
       createdAt
+      user {
+        id
+        name
+        image
+        homepage
+      }
       cover {
         id
         variant
