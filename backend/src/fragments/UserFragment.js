@@ -1,7 +1,5 @@
-import gql from 'graphql-tag'
-
-export const me = gql`
-  query {
+module.exports = `
+  fragment UserFragment on User {
     id
     name
     email
@@ -27,7 +25,7 @@ export const me = gql`
       }
       test {
         variant
-        answer
+         answer
         question {
           id
           variant
