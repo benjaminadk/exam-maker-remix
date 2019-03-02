@@ -79,12 +79,11 @@ export default class ExamMaker extends React.Component {
       props: {
         user: { name }
       },
-      state: { id, published, title, code, time, pass, image, cover, test }
+      state: { id, title, code, time, pass, image, cover, test }
     } = this
     const exam = {
       id,
       author: name,
-      published,
       title,
       code,
       time: Number(time),

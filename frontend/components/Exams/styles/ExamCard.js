@@ -2,9 +2,9 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 
 export const ExamCardStyles = styled.div`
-  width: 50rem;
+  width: 55rem;
   display: grid;
-  grid-template-columns: 5rem 1fr 3rem;
+  grid-template-columns: 5rem 1fr 5rem;
   grid-gap: 2rem;
   align-items: center;
   padding: 1rem;
@@ -17,8 +17,16 @@ export const ExamCardStyles = styled.div`
     height: 5rem;
   }
   .main {
+    .code {
+      font: 0.75rem 'Open Sans';
+      border: 1px solid ${props => props.theme.grey[2]};
+      border-radius: ${props => props.theme.borderRadius};
+      padding: 0.1rem 0.25rem;
+      background: ${props => props.theme.grey[0]};
+      color: ${props => props.theme.grey[5]};
+    }
     .title {
-      width: 35rem;
+      width: 40rem;
       font: 1.75rem 'Open Sans Bold';
       color: ${props => props.theme.grey[12]};
       -webkit-line-clamp: 1;
@@ -27,7 +35,7 @@ export const ExamCardStyles = styled.div`
       white-space: nowrap;
     }
     .description {
-      width: 35rem;
+      width: 40rem;
       font: 1.1rem 'Open Sans';
       text-align: justify;
       margin-bottom: 0.25rem;
@@ -55,11 +63,29 @@ export const ExamCardStyles = styled.div`
     }
   }
   .actions {
-    svg {
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${props => props.theme.grey[5]};
+    &:hover {
       color: ${props => props.theme.grey[10]};
-      &:hover {
-        color: ${props => props.theme.black};
-      }
+    }
+    svg {
+      color: inherit;
+    }
+    span {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      font: 0.75rem 'Open Sans Bold';
+      background: ${props => props.theme.grey[0]};
+      color: ${props => props.theme.grey[5]};
+      border: 1px solid ${props => props.theme.grey[2]};
+      border-radius: 50%;
+      padding: 0.15rem;
     }
   }
 `

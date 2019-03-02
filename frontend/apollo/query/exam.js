@@ -11,9 +11,12 @@ export const examById = gql`
       pass
       time
       image
+      downloads
       createdAt
       user {
         id
+        name
+        image
       }
       cover {
         id

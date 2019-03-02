@@ -7,6 +7,7 @@ import ExamCard from './ExamCard'
 import Pagination from './Pagination'
 import SearchInput from './SearchInput'
 import Loading from './Loading'
+import downloadExam from '../../lib/downloadExam'
 
 const ExamsStyles = styled.div``
 
@@ -80,7 +81,21 @@ class Exams extends React.Component {
     }
   }
 
-  onResetSearch = () => this.setState({ skip: 0 })
+  onDownloadExam = i => {
+    const { exams } = this.state
+    const exam = {
+      id: exams[i].id,
+      author: exams[i].user.name,
+      title: exams[i].title,
+      code: exams[i].code,
+      pass: Number(exams[i].pass),
+      time: Number(exams[i].time),
+      image: exams[i].image,
+      cover: exams[i].cover,
+      test: exams[i].test
+    }
+    downloadExam(exam)
+  }
 
   render() {
     const {
@@ -97,25 +112,13 @@ class Exams extends React.Component {
             <Loading size={50} />
           ) : (
             <React.Fragment>
-              <Pagination
-                count={count}
-                skip={skip}
-                first={first}
-                onPaginate={this.onPaginate}
-                onResetSearch={this.onResetSearch}
-              />
+              <Pagination count={count} skip={skip} first={first} onPaginate={this.onPaginate} />
               <div className="exams">
                 {exams.map((e, i) => (
-                  <ExamCard key={e.id} exam={e} />
+                  <ExamCard key={e.id} exam={e} onDownloadExam={() => this.onDownloadExam(i)} />
                 ))}
               </div>
-              <Pagination
-                count={count}
-                skip={skip}
-                first={first}
-                onPaginate={this.onPaginate}
-                onResetSearch={this.onResetSearch}
-              />
+              <Pagination count={count} skip={skip} first={first} onPaginate={this.onPaginate} />
             </React.Fragment>
           )}
         </MainContent>

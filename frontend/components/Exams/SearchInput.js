@@ -3,8 +3,8 @@ import Input from '../Shared/Input'
 
 const SearchInputStyles = styled.div`
   display: grid;
-  grid-template-rows: auto auto;
   justify-items: center;
+  align-items: center;
   margin-top: 5rem;
 `
 
@@ -13,7 +13,7 @@ export default ({ term, onChange, onKeyDown }) => (
     <Input
       type="input"
       width={300}
-      label="Search Exams"
+      label="Search..."
       value={term}
       onChange={onChange}
       inputProps={{ name: 'term', spellCheck: false, onKeyDown }}

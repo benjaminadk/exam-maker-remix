@@ -33,11 +33,7 @@ const PaginationStyles = styled.div`
       }
     }
     .middle {
-      background: ${props => lighten(0.1, props.theme.primary)};
-      transition: 0.3s;
-      &:hover {
-        background: ${props => props.theme.primary};
-      }
+      background: ${props => props.theme.grey[0]};
     }
     .next {
       color: ${props => (props.lastPage ? props.theme.grey[5] : props.theme.grey[10])};
@@ -52,24 +48,22 @@ const PaginationStyles = styled.div`
   }
 `
 
-export default ({ count, skip, first, onPaginate, onResetSearch }) => {
+export default ({ count, skip, first, onPaginate }) => {
   const page = skip / first + 1
   const totalPages = Math.ceil(count / first)
   return (
     <PaginationStyles firstPage={!Boolean(skip)} lastPage={page === totalPages}>
       <div>
         <div className="prev" onClick={() => onPaginate(false)}>
-          Prev
+          🡄 Prev
         </div>
         <div className="page">
           {page} of {totalPages}
         </div>
-        <div className="middle" onClick={onResetSearch}>
-          Reset
-        </div>
+        <div className="middle">Results</div>
         <div className="total">{count} Exams</div>
         <div className="next" onClick={() => onPaginate(true)}>
-          Next
+          Next 🡆
         </div>
       </div>
     </PaginationStyles>
