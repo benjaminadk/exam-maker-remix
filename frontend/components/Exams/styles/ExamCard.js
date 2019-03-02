@@ -11,7 +11,6 @@ export const ExamCardStyles = styled.div`
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
   margin-bottom: 2rem;
-  cursor: pointer;
   .image {
     width: 5rem;
     height: 5rem;
@@ -47,13 +46,18 @@ export const ExamCardStyles = styled.div`
         font: 1rem 'Open Sans Semi';
         color: ${props => props.theme.grey[5]};
       }
-      .name {
+      .name-red {
         font: 1rem 'Open Sans Bold';
         color: ${props => props.theme.secondary};
         margin-right: 0.5rem;
         &:hover {
           color: ${props => darken(0.1, props.theme.secondary)};
         }
+      }
+      .name {
+        font: 1rem 'Open Sans Semi';
+        color: ${props => props.theme.grey[5]};
+        margin-right: 0.5rem;
       }
       .avatar {
         width: 2rem;
@@ -68,6 +72,7 @@ export const ExamCardStyles = styled.div`
     justify-content: center;
     align-items: center;
     color: ${props => props.theme.grey[5]};
+    cursor: pointer;
     &:hover {
       color: ${props => props.theme.grey[10]};
     }

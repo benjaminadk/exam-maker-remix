@@ -14,6 +14,7 @@ export const examsByTerm = gql`
           {
             OR: [
               { title_contains: $term }
+              { description_contains: $term }
               { code_contains: $term }
               { test_some: { question_some: { text_contains: $term } } }
             ]

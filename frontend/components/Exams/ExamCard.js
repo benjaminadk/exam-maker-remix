@@ -13,9 +13,13 @@ export default ({ exam, onDownloadExam }) => (
       <div className="description">{exam.description}</div>
       <div className="meta">
         <span className="date">Created {formatAgo(exam.createdAt)} ago &nbsp;&bull;&nbsp;</span>
-        <a href={exam.user.homepage} className="name">
-          {exam.user.name}
-        </a>
+        {exam.user.homepage ? (
+          <a href={exam.user.homepage} className="name-red">
+            {exam.user.name}
+          </a>
+        ) : (
+          <div className="name">{exam.user.name}</div>
+        )}
         <img className="avatar" src={exam.user.image} />
       </div>
     </div>

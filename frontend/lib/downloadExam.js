@@ -19,7 +19,8 @@ export default exam => {
     exam.title
       .toLowerCase()
       .trim()
-      .replace(/\s/g, '-') + '.json'
+      .replace(/\s/g, '-')
+      .replace(/[^a-z0-9-]/g, '') + '.json'
   const dataLink = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(exam))}`
   const node = document.createElement('a')
   node.setAttribute('href', dataLink)
