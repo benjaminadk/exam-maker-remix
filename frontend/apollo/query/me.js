@@ -2,46 +2,48 @@ import gql from 'graphql-tag'
 
 export const me = gql`
   query {
-    id
-    name
-    email
-    image
-    homepage
-    role
-    createdAt
-    exams {
+    me {
       id
-      published
-      title
-      description
-      code
-      pass
-      time
+      name
+      email
       image
-      downloads
+      homepage
+      role
       createdAt
-      cover {
+      exams {
         id
-        variant
-        text
-      }
-      test {
-        variant
-        answer
-        question {
+        published
+        title
+        description
+        code
+        pass
+        time
+        image
+        downloads
+        createdAt
+        cover {
           id
           variant
           text
         }
-        choices {
-          id
-          label
-          text
-        }
-        explanation {
-          id
+        test {
           variant
-          text
+          answer
+          question {
+            id
+            variant
+            text
+          }
+          choices {
+            id
+            label
+            text
+          }
+          explanation {
+            id
+            variant
+            text
+          }
         }
       }
     }

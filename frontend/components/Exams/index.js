@@ -110,7 +110,7 @@ class Exams extends React.Component {
           <SearchInput term={term} onChange={this.onChange} onKeyDown={this.onKeyDown} />
           {loading ? (
             <Loading size={50} />
-          ) : (
+          ) : exams.length ? (
             <React.Fragment>
               <Pagination count={count} skip={skip} first={first} onPaginate={this.onPaginate} />
               <div className="exams">
@@ -120,6 +120,8 @@ class Exams extends React.Component {
               </div>
               <Pagination count={count} skip={skip} first={first} onPaginate={this.onPaginate} />
             </React.Fragment>
+          ) : (
+            <div>No results</div>
           )}
         </MainContent>
       </ExamsStyles>

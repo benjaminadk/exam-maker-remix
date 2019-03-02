@@ -24,8 +24,9 @@ module.exports = `
         text
       }
       test {
+        id
         variant
-         answer
+        answer
         question {
           id
           variant

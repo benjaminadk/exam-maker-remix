@@ -18,7 +18,7 @@ export default class Avatar extends React.Component {
     return (
       <AvatarStyles>
         <img src={user.image} onClick={this.onOpen} />
-        <UserMenu show={show} onClose={this.onClose} />
+        <UserMenu show={show} user={user} onClose={this.onClose} />
       </AvatarStyles>
     )
   }
