@@ -9,6 +9,7 @@ type Query {
 type Mutation {
   signup(name: String!, email: String!, password: String!): Payload
   signin(email: String!, password: String!): Payload
+  signout: Payload
   googleSignin(data: UserCreateInput): Payload
   createExam(data: ExamCreateInput): Exam
   updateExam(id: ID!, data: ExamUpdateInput): Payload

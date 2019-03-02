@@ -2,6 +2,16 @@ const signToken = require('../middleware/signToken')
 const defaults = require('./defaults')
 
 module.exports = {
+  signout: async (_, args, ctx, info) => {
+    try {
+      ctx.res.clearCookie(process.env.COOKIE)
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   googleSignin: async (_, args, ctx, info) => {
     try {
       const { googleID, ...rest } = args.data
