@@ -110,11 +110,13 @@ module.exports = {
           where: { id },
           data: {
             choices: {
-              create: [{ label: 'A', text: '' }]
+              create: [{ label: '', text: '' }]
             },
             answer: { set: question.answer.concat(false) }
           }
         })
+      } else if (type === 'explanation') {
+        await ctx.prisma.updateQuestion(payload)
       }
       return { success: true }
     } catch (error) {
@@ -136,6 +138,8 @@ module.exports = {
           where: { id },
           data: { text }
         })
+      } else if (type === 'explanation') {
+        await ctx.prisma.updateExplanationNode(payload)
       }
       return { success: true }
     } catch (error) {
@@ -157,6 +161,8 @@ module.exports = {
           where: { id: questionId },
           data: { answer: { set: answers } }
         })
+      } else if (type === 'explanation') {
+        await ctx.prisma.deleteExplanationNode({ id })
       }
       return { success: true }
     } catch (error) {

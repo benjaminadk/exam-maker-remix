@@ -75,7 +75,7 @@ export default class ChoiceInput extends React.Component {
       <ChoiceInputStyles>
         <Check id={id} answer={answer} onClick={this.onAnswerClick} />
         <Text id={id} text={text} index={index} onChange={this.onChange} />
-        <Delete id={id} onClick={this.onDelete} />
+        {index ? <Delete id={id} onClick={this.onDelete} /> : <div />}
       </ChoiceInputStyles>
     )
   }

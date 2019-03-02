@@ -68,7 +68,7 @@ export default class NodeInput extends React.Component {
 
   render() {
     const {
-      props: { id },
+      props: { id, index },
       state: { variant, text }
     } = this
     return (
@@ -107,11 +107,15 @@ export default class NodeInput extends React.Component {
             />
           )}
         </Mutation>
-        <Mutation mutation={deleteNode} refetchQueries={[{ query: examById, variables: { id } }]}>
-          {(deleteNode, { loading }) => (
-            <Delete size={15} onClick={() => this.onDeleteClick(deleteNode)} />
-          )}
-        </Mutation>
+        {index ? (
+          <Mutation mutation={deleteNode} refetchQueries={[{ query: examById, variables: { id } }]}>
+            {(deleteNode, { loading }) => (
+              <Delete size={15} onClick={() => this.onDeleteClick(deleteNode)} />
+            )}
+          </Mutation>
+        ) : (
+          <div />
+        )}
       </NodeInputStyles>
     )
   }

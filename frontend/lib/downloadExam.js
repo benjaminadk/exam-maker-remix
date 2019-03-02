@@ -3,6 +3,16 @@ function cleanup(x) {
   delete x.__typename
 }
 
+function formatLabel(x) {
+  if (x.variant === 2) {
+    x.choices = x.choices.filter((c, i) => c.text.length > 0)
+  } else if (x.variant === 3) {
+    x.choices = x.choices.map((c, i) => {
+      return { label: i + 1, text: c.text }
+    })
+  }
+}
+
 function cleanAll(x) {
   x.cover.forEach(cleanup)
   x.test.forEach(n => {
@@ -10,6 +20,7 @@ function cleanAll(x) {
     n.question.forEach(cleanup)
     n.choices.forEach(cleanup)
     n.explanation.forEach(cleanup)
+    formatLabel(n)
   })
 }
 

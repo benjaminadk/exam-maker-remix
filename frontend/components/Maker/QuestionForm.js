@@ -18,7 +18,7 @@ export default ({ id, question }) => (
   <QuestionFormStyles>
     <Center>
       <SubHeading>
-        <span>Question Nodes</span>
+        <span>Question</span>
         <Mutation
           mutation={createNode}
           variables={{ id: question.id, type: 'question' }}
@@ -32,7 +32,24 @@ export default ({ id, question }) => (
         </Mutation>
       </SubHeading>
       {question.question.map((q, i) => (
-        <NodeInput key={q.id} id={id} type="question" node={q} />
+        <NodeInput key={q.id} id={id} type="question" index={i} node={q} />
+      ))}
+      <SubHeading>
+        <span>Explanation</span>
+        <Mutation
+          mutation={createNode}
+          variables={{ id: question.id, type: 'explanation' }}
+          refetchQueries={[{ query: examById, variables: { id } }]}
+        >
+          {(createNode, { loading }) => (
+            <span className="add" onClick={async () => await createNode()}>
+              <Add size={15} />
+            </span>
+          )}
+        </Mutation>
+      </SubHeading>
+      {question.explanation.map((e, i) => (
+        <NodeInput key={e.id} id={id} type="explanation" index={i} node={e} />
       ))}
     </Center>
     <Center>
@@ -41,7 +58,7 @@ export default ({ id, question }) => (
         <Type id={id} question={question} />
       </SubHeading>
       <SubHeading>
-        <span>Answer Nodes</span>
+        <span>Answer</span>
         <Mutation
           mutation={createNode}
           variables={{ id: question.id, type: 'choices' }}

@@ -58,7 +58,7 @@ type ExplanationNode {
   id: ID! @unique
   variant: Int! @default(value: "0")
   text: String! @default(value: "")
-  href: String
+  href: String @default(value: "")
 }
 
 enum Role {

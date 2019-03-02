@@ -135,7 +135,7 @@ export default ({
         </Mutation>
       </SubHeading>
       {cover.map((n, i) => (
-        <NodeInput key={n.id} type="cover" id={id} node={n} />
+        <NodeInput key={n.id} type="cover" index={i} id={id} node={n} />
       ))}
     </Center>
   </MainFormStyles>

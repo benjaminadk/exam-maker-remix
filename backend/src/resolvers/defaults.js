@@ -17,6 +17,7 @@ const choices = [
     text: ''
   }
 ]
+
 const answers = [false, false, false, false]
 
 module.exports = {
