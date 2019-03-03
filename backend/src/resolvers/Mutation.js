@@ -1,20 +1,48 @@
+const bcrypt = require('bcryptjs')
+const md5 = require('md5')
 const signToken = require('../middleware/signToken')
-const defaults = require('./utils/defaultsfaults')
+const defaults = require('./utils/defaults')
 const validateSignup = require('./utils/validateSignup')
-const signToken = require('../middleware/signToken')
 
 module.exports = {
   signup: async (_, args, ctx, info) => {
     validateSignup(args)
+    const email = args.email.trim().toLowerCase()
+    const userExists = await ctx.prisma.$exists.user({ email })
+    if (userExists) {
+      throw new Error(`User exists for ${email}`)
+    }
     try {
+      const hashedEmail = md5(email)
+      const image = `https://www.gravatar.com/avatar/${hashedEmail}?d=mp`
       const password = await bcrypt.hash(args.password, 10)
       const user = await ctx.prisma.createUser({
         name: args.name,
-        email: args.email.toLowerCase(),
+        email,
         password,
+        image,
         role: 'USER'
       })
-      signToken(res, user.id)
+      signToken(ctx.res, user.id)
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
+  signin: async (_, args, ctx, info) => {
+    const email = args.email.trim().toLowerCase()
+    const user = await ctx.prisma.user({ email })
+    if (!user) {
+      throw new Error(`No User for ${email}.`)
+    }
+    const isMatch = await bcrypt.compare(args.password, user.password)
+    if (!isMatch) {
+      throw new Error('Invalid password.')
+    }
+    try {
+      signToken(ctx.res, user.id)
       return { success: true }
     } catch (error) {
       console.log(error)

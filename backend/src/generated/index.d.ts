@@ -1930,6 +1930,7 @@ export interface ChoiceUpdateManyMutationInput {
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
   googleID?: String;
+  email?: String;
 }>;
 
 export interface NodeNode {

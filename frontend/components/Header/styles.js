@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { darken, transparentize } from 'polished'
+import { darken } from 'polished'
 import { GreyButton } from '../Shared/GreyButton'
 
 export const HeaderStyles = styled.header`
@@ -39,20 +39,24 @@ export const SigninModalStyles = styled.div`
   }
   .content {
     height: calc(100% - 4rem);
-    padding: 3rem;
+    padding: 1rem 3rem 3rem 3rem;
     .traditional {
       display: flex;
       flex-direction: column;
       align-items: center;
+      img {
+        width: 4rem;
+      }
       button {
         width: 100%;
-        margin-top: -2rem;
+        margin-top: -1rem;
       }
       .toggle {
         font: 1.2rem 'Open Sans Semi';
         color: ${props => props.theme.grey[5]};
         text-decoration: underline;
-        margin-bottom: 3rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
         transition: 0.3s;
         cursor: pointer;
         &:hover {

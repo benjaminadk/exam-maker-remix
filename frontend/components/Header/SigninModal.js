@@ -1,12 +1,13 @@
-import { withApollo, Mutation } from 'react-apollo'
+import { withApollo } from 'react-apollo'
 import { GoogleLogin } from 'react-google-login'
 import { Google } from 'styled-icons/boxicons-logos/Google'
 import { Close } from 'styled-icons/material/Close'
 import { SigninModalStyles, GoogleButton } from './styles'
-import { googleClientID } from '../../config'
+import { googleClientID, logoURL } from '../../config'
 import { googleSignin } from '../../apollo/mutation/googleSignin'
 import { me } from '../../apollo/query/me'
 import { signup } from '../../apollo/mutation/signup'
+import { signin } from '../../apollo/mutation/signin'
 import Modal from '../Modal'
 import Input from '../Shared/Input'
 import { DarkGreyButton } from './styles'
@@ -19,6 +20,16 @@ class SigninModal extends React.Component {
     name: '',
     email: '',
     password: ''
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.show && this.props.show) {
+      this.resetState()
+    }
+  }
+
+  resetState = () => {
+    this.setState({ signupMode: true, name: '', email: '', password: '' })
   }
 
   onChange = ({ target: { name, value } }) => {
@@ -59,10 +70,19 @@ class SigninModal extends React.Component {
         refetchQueries: [{ query: me }]
       })
       if (res.data.signup.success) {
-        this.setState({ name: '', email: '', password: '' })
+        this.resetState()
         this.props.onClose()
       }
     } else {
+      let res = await client.mutate({
+        mutation: signin,
+        variables: { email, password },
+        refetchQueries: [{ query: me }]
+      })
+      if (res.data.signin.success) {
+        this.resetState()
+        this.props.onClose()
+      }
     }
   }
 
@@ -78,6 +98,7 @@ class SigninModal extends React.Component {
           <div className="top" />
           <div className="content">
             <div className="traditional">
+              <img src={logoURL} />
               <div className="toggle" onClick={this.toggleSignupMode}>
                 {signupMode ? 'Already have account? Sign in.' : 'Create new account. Sign up.'}
               </div>
@@ -103,6 +124,7 @@ class SigninModal extends React.Component {
                 type="password"
                 width={250}
                 label="Password"
+                hint="Must be at least 8 characters"
                 value={password}
                 inputProps={{ name: 'password', spellCheck: false }}
                 onChange={this.onChange}

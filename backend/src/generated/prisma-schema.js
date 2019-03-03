@@ -1882,6 +1882,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   googleID: String
+  email: String
 }
 `
       }
