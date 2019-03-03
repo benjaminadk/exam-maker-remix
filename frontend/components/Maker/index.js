@@ -26,12 +26,16 @@ export default class Maker extends React.Component {
       query,
       user: { exams }
     } = this.props
-    const examIds = exams.map(e => e.id)
-    const isOwner = examIds.includes(query.id)
-    if (isOwner) {
-      this.setState({ loading: false, create: !Boolean(query.id) })
+    if (!query.id) {
+      this.setState({ loading: false, create: true })
     } else {
-      Router.push('/')
+      const examIds = exams.map(e => e.id)
+      const isOwner = examIds.includes(query.id)
+      if (isOwner) {
+        this.setState({ loading: false, create: !Boolean(query.id) })
+      } else {
+        Router.push('/')
+      }
     }
   }
 

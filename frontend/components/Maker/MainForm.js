@@ -31,7 +31,8 @@ export default ({
   image,
   cover,
   onChange,
-  onDownloadExam
+  onDownloadExam,
+  onDeleteExam
 }) => (
   <MainFormStyles>
     <Center>
@@ -39,7 +40,12 @@ export default ({
         <span>Exam Properties</span>
         <span />
       </SubHeading>
-      <Actions id={id} published={published} onDownloadExam={onDownloadExam} />
+      <Actions
+        id={id}
+        published={published}
+        onDownloadExam={onDownloadExam}
+        onDeleteExam={onDeleteExam}
+      />
       <ExamProperties>
         <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
           {(updateExam, { loading }) => (

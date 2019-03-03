@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Router from 'next/router'
 import { Mutation } from 'react-apollo'
 import { createExam } from '../../apollo/mutation/createExam'
+import { me } from '../../apollo/query/me'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import { RedButton } from '../Shared/RedButton'
 import Input from '../Shared/Input'
@@ -50,7 +51,7 @@ export default class CreateExam extends React.Component {
         <BannerTop>
           <BannerTitle>Create Exam</BannerTitle>
         </BannerTop>
-        <Mutation mutation={createExam}>
+        <Mutation mutation={createExam} awaitRefetchQueries={true} refetchQueries={[{ query: me }]}>
           {(createExam, { loading }) => (
             <MainContent>
               <Input

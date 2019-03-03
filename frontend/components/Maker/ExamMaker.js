@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import isequal from 'lodash.isequal'
 import debounce from 'lodash.debounce'
+import Router from 'next/router'
 import MainForm from './MainForm'
 import QuestionForm from './QuestionForm'
 import Controls from './Controls'
@@ -95,6 +96,19 @@ export default class ExamMaker extends React.Component {
     downloadExam(exam)
   }
 
+  onDeleteExam = async deleteExam => {
+    const confirm = window.confirm('Are you sure you want to delete this exam?')
+    if (confirm) {
+      const { id } = this.state
+      const res = await deleteExam({
+        variables: { id }
+      })
+      if (res.data.deleteExam.success) {
+        Router.push('/')
+      }
+    }
+  }
+
   render() {
     const {
       state: { id, published, mode, title, description, code, time, pass, image, cover, test }
@@ -115,6 +129,7 @@ export default class ExamMaker extends React.Component {
               cover={cover}
               onChange={this.onChange}
               onDownloadExam={this.onDownloadExam}
+              onDeleteExam={this.onDeleteExam}
             />
           ) : (
             <QuestionForm id={id} question={test[mode]} />

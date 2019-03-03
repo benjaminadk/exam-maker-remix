@@ -4,7 +4,9 @@ import { Public } from 'styled-icons/material/Public'
 import { FileDownload } from 'styled-icons/material/FileDownload'
 import { Delete } from 'styled-icons/material/Delete'
 import { updateExam } from '../../apollo/mutation/updateExam'
+import { deleteExam } from '../../apollo/mutation/deleteExam'
 import { examById } from '../../apollo/query/exam'
+import { me } from '../../apollo/query/me'
 
 const ActionsStyles = styled.div`
   display: flex;
@@ -36,7 +38,7 @@ const ActionsStyles = styled.div`
   }
 `
 
-export default ({ id, published, onDownloadExam }) => (
+export default ({ id, published, onDownloadExam, onDeleteExam }) => (
   <ActionsStyles published={published}>
     <Mutation
       mutation={updateExam}
@@ -52,8 +54,12 @@ export default ({ id, published, onDownloadExam }) => (
     <div className="action download" onClick={onDownloadExam}>
       <FileDownload size={20} />
     </div>
-    <div className="action delete">
-      <Delete size={20} />
-    </div>
+    <Mutation mutation={deleteExam} refetchQueries={[{ query: me }]}>
+      {(deleteExam, { loading }) => (
+        <div onClick={() => onDeleteExam(deleteExam)} className="action delete">
+          <Delete size={20} />
+        </div>
+      )}
+    </Mutation>
   </ActionsStyles>
 )

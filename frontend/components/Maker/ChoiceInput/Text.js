@@ -12,7 +12,7 @@ export default ({ id, index, text, onChange }) => (
         width={275}
         label={loading ? 'Saving...' : `Answer Text ${formatAnswerLabel(index)}`}
         value={text}
-        inputProps={{ spellCheck: false }}
+        inputProps={{ name: 'text', spellCheck: false }}
         onChange={e => onChange(e, updateNode)}
       />
     )}
