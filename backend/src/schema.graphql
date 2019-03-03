@@ -11,6 +11,7 @@ type Mutation {
   signin(email: String!, password: String!): Payload
   signout: Payload
   googleSignin(data: UserCreateInput): Payload
+  updateUser(id: ID!, data: UserUpdateInput): Payload
   createExam(data: ExamCreateInput): Exam
   updateExam(id: ID!, data: ExamUpdateInput): Payload
   deleteExam(id: ID!): Payload
@@ -19,6 +20,7 @@ type Mutation {
   createNode(id: ID!, type: String): Payload
   updateNode(id: ID!, type: String, variant: Int, text: String): Payload
   deleteNode(id: ID!, type: String, questionId: ID, answers: [Boolean]): Payload
+  s3Sign(filename: String!, filetype: String!): S3Payload
 }
 
 type User {
@@ -91,6 +93,11 @@ type Payload {
 type ExamPayload {
   exams: [Exam]
   count: Int
+}
+
+type S3Payload {
+  requestURL: String
+  fileURL: String
 }
 
 enum Role {

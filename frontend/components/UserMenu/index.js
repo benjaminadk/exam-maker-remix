@@ -8,8 +8,6 @@ import { signout } from '../../apollo/mutation/signout'
 import { me } from '../../apollo/query/me'
 
 export default class UserMenu extends React.Component {
-  state = {}
-
   componentDidUpdate(prevProps) {
     if (!prevProps.show && this.props.show) {
       document.body.addEventListener('click', this.props.onClose)
@@ -20,21 +18,17 @@ export default class UserMenu extends React.Component {
     document.body.removeEventListener('click', this.props.onClose)
   }
 
-  onExamsClick = () => {
-    Router.push('/my-exams')
-  }
-
   render() {
     const {
       props: { show }
     } = this
     return (
       <MenuStyles show={show}>
-        <div className="item">
+        <div className="item" onClick={() => Router.push('/my-profile')}>
           <PersonPin size={15} />
           <span>Profile</span>
         </div>
-        <div className="item" onClick={this.onExamsClick}>
+        <div className="item" onClick={() => Router.push('/my-exams')}>
           <School size={15} />
           <span>My Exams</span>
         </div>

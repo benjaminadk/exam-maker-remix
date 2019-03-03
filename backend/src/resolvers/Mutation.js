@@ -78,6 +78,16 @@ module.exports = {
     }
   },
 
+  updateUser: async (_, args, ctx, info) => {
+    try {
+      await ctx.prisma.updateUser({ where: { id: args.id }, data: args.data })
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   createExam: async (_, args, ctx, info) => {
     try {
       const exam = await ctx.prisma.createExam({
@@ -228,6 +238,25 @@ module.exports = {
     } catch (error) {
       console.log(error)
       return { success: false }
+    }
+  },
+
+  s3Sign: async (_, args, ctx, info) => {
+    try {
+      const Bucket = process.env.AWS_BUCKET
+      const params = {
+        Bucket,
+        Key: args.filename,
+        Expires: 60,
+        ContentType: args.filetype,
+        ACL: 'public-read'
+      }
+      const requestURL = await getSignedUrl('putObject', params)
+      const fileURL = `https://${Bucket}.s3.amazonaws.com/${args.filename}`
+      return { requestURL, fileURL }
+    } catch (error) {
+      console.log(error)
+      return null
     }
   }
 }

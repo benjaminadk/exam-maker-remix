@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import ExamCard from '../Exams/ExamCard'
 
-const MyExamsStyles = styled.div``
-
 const MainContent = styled.div`
   width: ${props => props.theme.maxWidth};
   margin: 0 auto;
@@ -18,8 +16,6 @@ const MainContent = styled.div`
 `
 
 export default class MyExams extends React.Component {
-  state = {}
-
   onEdit = id => Router.push({ pathname: '/maker', query: { id } })
 
   render() {
@@ -27,7 +23,7 @@ export default class MyExams extends React.Component {
       props: { user }
     } = this
     return (
-      <MyExamsStyles>
+      <div>
         <BannerTop>
           <BannerTitle>My Exams</BannerTitle>
         </BannerTop>
@@ -44,7 +40,7 @@ export default class MyExams extends React.Component {
             )}
           </div>
         </MainContent>
-      </MyExamsStyles>
+      </div>
     )
   }
 }
