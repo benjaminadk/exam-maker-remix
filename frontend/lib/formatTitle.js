@@ -8,6 +8,8 @@ export default pathname => {
       return 'Schema'
     case '/exams':
       return 'Exams'
+    case '/my-exams':
+      return 'My Exams'
     default:
       return 'Home'
   }

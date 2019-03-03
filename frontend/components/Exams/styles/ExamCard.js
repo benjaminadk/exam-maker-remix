@@ -3,7 +3,7 @@ import { darken } from 'polished'
 
 function highlight() {
   return css`
-    font: 0.75rem 'Open Sans Bold';
+    font: 0.75rem 'Open Sans Semi';
     text-transform: uppercase;
     color: ${props => props.theme.grey[5]};
     border: 1px solid ${props => props.theme.grey[2]};
@@ -46,9 +46,10 @@ export const ExamCardStyles = styled.div`
     height: 5rem;
   }
   .main {
-    .code {
+    .stat {
       ${highlight()}
       padding: 0.1rem 0.25rem;
+      margin-right: 0.25rem;
     }
     .title {
       width: 40rem;
@@ -63,7 +64,7 @@ export const ExamCardStyles = styled.div`
       width: 40rem;
       font: 1.1rem 'Open Sans';
       text-align: justify;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
     }
     .meta {
       display: flex;
@@ -94,32 +95,13 @@ export const ExamCardStyles = styled.div`
   }
   .actions {
     align-self: flex-end;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${props => props.theme.grey[5]};
+    justify-self: flex-end;
     cursor: pointer;
-    &:hover {
-      color: ${props => props.theme.grey[10]};
-    }
     svg {
       color: ${props => props.theme.grey[5]};
       &:hover {
         color: ${props => props.theme.grey[10]};
       }
-    }
-    span {
-      width: 1.5rem;
-      height: 1.5rem;
-      display: grid;
-      justify-items: center;
-      align-items: center;
-      font: 0.75rem 'Open Sans Bold';
-      background: ${props => props.theme.grey[0]};
-      color: ${props => props.theme.grey[5]};
-      border: 1px solid ${props => props.theme.grey[2]};
-      border-radius: 50%;
-      padding: 0.15rem;
     }
   }
 `

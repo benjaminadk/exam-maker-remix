@@ -51,9 +51,16 @@ export default ({ id, published, onDownloadExam, onDeleteExam }) => (
         </div>
       )}
     </Mutation>
-    <div className="action download" onClick={onDownloadExam}>
-      <FileDownload size={20} />
-    </div>
+    <Mutation
+      mutation={updateExam}
+      refetchQueries={[{ query: me }, { query: examById, variables: { id } }]}
+    >
+      {(updateExam, { loading }) => (
+        <div className="action download" onClick={() => onDownloadExam(updateExam)}>
+          <FileDownload size={20} />
+        </div>
+      )}
+    </Mutation>
     <Mutation mutation={deleteExam} refetchQueries={[{ query: me }]}>
       {(deleteExam, { loading }) => (
         <div onClick={() => onDeleteExam(deleteExam)} className="action delete">

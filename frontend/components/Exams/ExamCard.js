@@ -13,11 +13,13 @@ export default ({ exam, edit, onEdit, onDownloadExam }) => (
     ) : null}
     <img className="image" src={exam.image || exam.user.image} />
     <div className="main">
-      {exam.code ? <span className="code">{exam.code}</span> : null}
       <div className="title" title={exam.title}>
         {exam.title}
       </div>
       <div className="description">{exam.description}</div>
+      {exam.code ? <span className="stat">Code: {exam.code}</span> : null}
+      <span className="stat">Questions: {exam.test.length}</span>
+      <span className="stat">Downloads: {exam.downloads}</span>
       <div className="meta">
         <span className="date">Created {formatAgo(exam.createdAt)} ago &nbsp;&bull;&nbsp;</span>
         {exam.user.homepage ? (
@@ -32,7 +34,6 @@ export default ({ exam, edit, onEdit, onDownloadExam }) => (
     </div>
     <div className="actions" onClick={onDownloadExam}>
       <FileDownload size={20} />
-      <span>{exam.downloads}</span>
     </div>
   </ExamCardStyles>
 )

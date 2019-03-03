@@ -30,6 +30,7 @@ export default class ExamMaker extends React.Component {
     pass: '',
     time: '',
     image: '',
+    downloads: '',
     cover: [],
     test: []
   }
@@ -54,10 +55,23 @@ export default class ExamMaker extends React.Component {
       pass,
       time,
       image,
+      downloads,
       cover,
       test
     } = this.props.exam
-    this.setState({ id, published, title, description, code, pass, time, image, cover, test })
+    this.setState({
+      id,
+      published,
+      title,
+      description,
+      code,
+      pass,
+      time,
+      image,
+      downloads,
+      cover,
+      test
+    })
   }
 
   setModeState = mode => this.setState({ mode })
@@ -75,12 +89,12 @@ export default class ExamMaker extends React.Component {
     })
   }, 5000)
 
-  onDownloadExam = () => {
+  onDownloadExam = async updateExam => {
     const {
       props: {
         user: { name }
       },
-      state: { id, title, code, time, pass, image, cover, test }
+      state: { id, title, code, time, pass, image, downloads, cover, test }
     } = this
     const exam = {
       id,
@@ -93,6 +107,9 @@ export default class ExamMaker extends React.Component {
       cover,
       test
     }
+    await updateExam({
+      variables: { id, data: { downloads: downloads + 1 } }
+    })
     downloadExam(exam)
   }
 

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { withApollo } from 'react-apollo'
+import { withApollo, Mutation } from 'react-apollo'
 import debounce from 'lodash.debounce'
 import { examsByTerm } from '../../apollo/query/exams'
+import { updateExam } from '../../apollo/mutation/updateExam'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import ExamCard from './ExamCard'
 import Pagination from './Pagination'
@@ -81,20 +82,24 @@ class Exams extends React.Component {
     }
   }
 
-  onDownloadExam = i => {
+  onDownloadExam = async (i, updateExam) => {
     const { exams } = this.state
-    const exam = {
-      id: exams[i].id,
-      author: exams[i].user.name,
-      title: exams[i].title,
-      code: exams[i].code,
-      pass: Number(exams[i].pass),
-      time: Number(exams[i].time),
-      image: exams[i].image,
-      cover: exams[i].cover,
-      test: exams[i].test
+    const exam = exams[i]
+    const download = {
+      id: exam.id,
+      author: exam.user.name,
+      title: exam.title,
+      code: exam.code,
+      pass: Number(exam.pass),
+      time: Number(exam.time),
+      image: exam.image,
+      cover: exam.cover,
+      test: exam.test
     }
-    downloadExam(exam)
+    await updateExam({
+      variables: { id: exam.id, data: { downloads: exam.downloads + 1 } }
+    })
+    downloadExam(download)
   }
 
   render() {
@@ -115,7 +120,14 @@ class Exams extends React.Component {
               <Pagination count={count} skip={skip} first={first} onPaginate={this.onPaginate} />
               <div className="exams">
                 {exams.map((e, i) => (
-                  <ExamCard key={e.id} exam={e} onDownloadExam={() => this.onDownloadExam(i)} />
+                  <Mutation key={e.id} mutation={updateExam}>
+                    {(updateExam, { loading }) => (
+                      <ExamCard
+                        exam={e}
+                        onDownloadExam={() => this.onDownloadExam(i, updateExam)}
+                      />
+                    )}
+                  </Mutation>
                 ))}
               </div>
               <Pagination count={count} skip={skip} first={first} onPaginate={this.onPaginate} />
