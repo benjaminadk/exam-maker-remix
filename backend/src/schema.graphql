@@ -13,6 +13,7 @@ type Mutation {
   googleSignin(data: UserCreateInput): Payload
   createExam(data: ExamCreateInput): Exam
   updateExam(id: ID!, data: ExamUpdateInput): Payload
+  deleteExam(id: ID!): Payload
   createQuestion(id: ID!): Payload
   updateQuestion(id: ID!, data: QuestionUpdateInput): Payload
   createNode(id: ID!, type: String): Payload

@@ -107,6 +107,18 @@ module.exports = {
     }
   },
 
+  deleteExam: async (_, args, ctx, info) => {
+    try {
+      await ctx.prisma.deleteExam({
+        id: args.id
+      })
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   createQuestion: async (_, args, ctx, info) => {
     try {
       await ctx.prisma.updateExam({
