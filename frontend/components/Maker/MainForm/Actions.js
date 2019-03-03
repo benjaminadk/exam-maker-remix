@@ -3,10 +3,10 @@ import { Mutation } from 'react-apollo'
 import { Public } from 'styled-icons/material/Public'
 import { FileDownload } from 'styled-icons/material/FileDownload'
 import { Delete } from 'styled-icons/material/Delete'
-import { updateExam } from '../../apollo/mutation/updateExam'
-import { deleteExam } from '../../apollo/mutation/deleteExam'
-import { examById } from '../../apollo/query/exam'
-import { me } from '../../apollo/query/me'
+import { updateExam } from '../../../apollo/mutation/updateExam'
+import { deleteExam } from '../../../apollo/mutation/deleteExam'
+import { examById } from '../../../apollo/query/exam'
+import { me } from '../../../apollo/query/me'
 
 const ActionsStyles = styled.div`
   display: flex;
