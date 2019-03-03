@@ -91,6 +91,7 @@ export default class NodeInput extends React.Component {
         <Mutation mutation={updateNode} refetchQueries={[{ query: examById, variables: { id } }]}>
           {(updateNode, { loading }) => (
             <Input
+              type="textarea"
               width={400}
               label={
                 loading
@@ -103,7 +104,7 @@ export default class NodeInput extends React.Component {
               }
               value={text}
               onChange={e => this.onChange(e, updateNode)}
-              inputProps={{ type: 'text', name: 'text', spellCheck: false }}
+              inputProps={{ name: 'text', spellCheck: false }}
             />
           )}
         </Mutation>

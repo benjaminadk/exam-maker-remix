@@ -1,7 +1,27 @@
 const signToken = require('../middleware/signToken')
-const defaults = require('./defaults')
+const defaults = require('./utils/defaultsfaults')
+const validateSignup = require('./utils/validateSignup')
+const signToken = require('../middleware/signToken')
 
 module.exports = {
+  signup: async (_, args, ctx, info) => {
+    validateSignup(args)
+    try {
+      const password = await bcrypt.hash(args.password, 10)
+      const user = await ctx.prisma.createUser({
+        name: args.name,
+        email: args.email.toLowerCase(),
+        password,
+        role: 'USER'
+      })
+      signToken(res, user.id)
+      return { success: true }
+    } catch (error) {
+      console.log(error)
+      return { success: false }
+    }
+  },
+
   signout: async (_, args, ctx, info) => {
     try {
       ctx.res.clearCookie(process.env.COOKIE)

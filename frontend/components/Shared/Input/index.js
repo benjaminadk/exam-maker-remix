@@ -50,31 +50,21 @@ export default class Input extends React.Component {
         <Label focus={focus} value={Boolean(value)} onClick={this.onFocus}>
           {label}
         </Label>
-        {type === 'number' ? (
-          <input
-            type="number"
+        {type === 'textarea' ? (
+          <textarea
             ref={el => (this.text = el)}
             {...inputProps}
-            value={value}
-            onChange={onChange}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-          />
-        ) : type === 'input' ? (
-          <input
-            type="text"
-            ref={el => (this.text = el)}
-            {...inputProps}
+            rows={1}
             value={value}
             onChange={onChange}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
           />
         ) : (
-          <textarea
+          <input
+            type={type}
             ref={el => (this.text = el)}
             {...inputProps}
-            rows={1}
             value={value}
             onChange={onChange}
             onFocus={this.onFocus}
