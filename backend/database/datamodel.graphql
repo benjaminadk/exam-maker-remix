@@ -21,7 +21,7 @@ type Exam {
   time: Int @default(value: "60")
   image: String @default(value: "")
   downloads: Int @default(value: "0")
-  cover: [CoverNode]
+  cover: [CoverNode] @relation(name: "CoverNodes", onDelete: CASCADE)
   test: [Question] @relation(name: "ExamQuestions", onDelete: CASCADE)
   user: User
   createdAt: DateTime!
@@ -30,10 +30,10 @@ type Exam {
 type Question {
   id: ID! @unique
   variant: Int! @default(value: "0")
-  question: [QuestionNode]
-  choices: [Choice]
+  question: [QuestionNode] @relation(name: "QuestionNodes", onDelete: CASCADE)
+  choices: [Choice] @relation(name: "Choices", onDelete: CASCADE)
   answer: [Boolean]
-  explanation: [ExplanationNode]
+  explanation: [ExplanationNode] @relation(name: "ExplanationNodes", onDelete: CASCADE)
 }
 
 type CoverNode {
