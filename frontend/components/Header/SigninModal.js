@@ -1,4 +1,4 @@
-import { withApollo } from 'react-apollo'
+import { withApollo, Mutation } from 'react-apollo'
 import { GoogleLogin } from 'react-google-login'
 import { Google } from 'styled-icons/boxicons-logos/Google'
 import { Close } from 'styled-icons/material/Close'
@@ -10,6 +10,7 @@ import { signup } from '../../apollo/mutation/signup'
 import { signin } from '../../apollo/mutation/signin'
 import Modal from '../Modal'
 import Input from '../Shared/Input'
+import ErrorMessage from '../Shared/ErrorMessage'
 import { DarkGreyButton } from './styles'
 
 const error = 'Error authenticating with Google Sign In'
@@ -58,31 +59,25 @@ class SigninModal extends React.Component {
     console.log(res)
   }
 
-  onRegister = async () => {
-    const {
-      props: { client },
-      state: { signupMode, name, email, password }
-    } = this
-    if (signupMode) {
-      let res = await client.mutate({
-        mutation: signup,
-        variables: { name, email, password },
-        refetchQueries: [{ query: me }]
-      })
-      if (res.data.signup.success) {
-        this.resetState()
-        this.props.onClose()
-      }
-    } else {
-      let res = await client.mutate({
-        mutation: signin,
-        variables: { email, password },
-        refetchQueries: [{ query: me }]
-      })
-      if (res.data.signin.success) {
-        this.resetState()
-        this.props.onClose()
-      }
+  onSignup = async signup => {
+    const { name, email, password } = this.state
+    const res = await signup({
+      variables: { name, email, password }
+    })
+    if (res.data.signup.success) {
+      this.resetState()
+      this.props.onClose()
+    }
+  }
+
+  onSignin = async signin => {
+    const { email, password } = this.state
+    const res = await signin({
+      variables: { email, password }
+    })
+    if (res.data.signin.success) {
+      this.resetState()
+      this.props.onClose()
     }
   }
 
@@ -129,9 +124,25 @@ class SigninModal extends React.Component {
                 inputProps={{ name: 'password', spellCheck: false }}
                 onChange={this.onChange}
               />
-              <DarkGreyButton onClick={this.onRegister}>
-                Sign {signupMode ? 'up' : 'in'}
-              </DarkGreyButton>
+              {signupMode ? (
+                <Mutation mutation={signup} refetchQueries={[{ query: me }]}>
+                  {(signup, { loading, error }) => (
+                    <>
+                      <DarkGreyButton onClick={() => this.onSignup(signup)}>Sign up</DarkGreyButton>
+                      <ErrorMessage error={error} />
+                    </>
+                  )}
+                </Mutation>
+              ) : (
+                <Mutation mutation={signin} refetchQueries={[{ query: me }]}>
+                  {(signin, { loading, error }) => (
+                    <>
+                      <DarkGreyButton onClick={() => this.onSignin(signin)}>Sign in</DarkGreyButton>
+                      <ErrorMessage error={error} />
+                    </>
+                  )}
+                </Mutation>
+              )}
             </div>
             <div className="divider">
               <span />
