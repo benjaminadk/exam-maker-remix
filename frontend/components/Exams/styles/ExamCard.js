@@ -69,12 +69,13 @@ export const ExamCardStyles = styled.div`
     .meta {
       display: flex;
       align-items: center;
+      margin-top: 0.25rem;
       .date {
         font: 1rem 'Open Sans Semi';
         color: ${props => props.theme.grey[5]};
       }
       .name-red {
-        font: 1rem 'Open Sans Bold';
+        font: 1rem 'Open Sans Semi';
         color: ${props => props.theme.secondary};
         margin-right: 0.5rem;
         &:hover {
