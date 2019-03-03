@@ -34,6 +34,7 @@ export default class Page extends React.Component {
 
   render() {
     const {
+      props: { pathname },
       state: { showModal }
     } = this
     return (
@@ -43,7 +44,7 @@ export default class Page extends React.Component {
             if (loading) return <Loading size={50} />
             return (
               <PageStyles>
-                <Meta />
+                <Meta pathname={pathname} />
                 <GlobalStyle />
                 <Header user={data.me} onShowModal={this.onShowModal} />
                 <Main>
