@@ -10,6 +10,8 @@ export default pathname => {
       return 'Exams'
     case '/my-exams':
       return 'My Exams'
+    case '/my-profile':
+      return 'My Profile'
     default:
       return 'Home'
   }

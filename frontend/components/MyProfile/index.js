@@ -1,10 +1,15 @@
 import styled from 'styled-components'
 import { Mutation } from 'react-apollo'
+import axios from 'axios'
+import isequal from 'lodash.isequal'
+import debounce from 'lodash.debounce'
 import { PhotoCamera } from 'styled-icons/material/PhotoCamera'
 import { updateUser } from '../../apollo/mutation/updateUser'
+import { s3Sign } from '../../apollo/mutation/s3Sign'
 import { me } from '../../apollo/query/me'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import Input from '../Shared/Input'
+import formatFilename from '../../lib/formatFilename'
 
 const MainContent = styled.div`
   width: ${props => props.theme.maxWidth};
@@ -57,6 +62,7 @@ const ImageUpload = styled.div`
 
 export default class MyProfile extends React.Component {
   state = {
+    id: '',
     name: '',
     email: '',
     image: '',
@@ -67,16 +73,55 @@ export default class MyProfile extends React.Component {
     this.setProfile()
   }
 
+  componentDidUpdate(prevProps) {
+    if (!isequal(prevProps.user, this.props.user)) {
+      this.setProfile()
+    }
+  }
+
   setProfile = () => {
-    const { name, email, image, homepage } = this.props.user
-    this.setState({ name, email, image, homepage })
+    const { id, name, email, image, homepage } = this.props.user
+    this.setState({ id, name, email, image, homepage })
   }
 
   onChange = ({ target: { name, value } }, updateUser) => {
     this.setState({ [name]: value })
+    this.onInputChange(updateUser)
   }
 
-  onImageChange = async ({ target: { files } }, updateUser) => {}
+  onInputChange = debounce(async updateUser => {
+    const { id, name, email, homepage } = this.state
+    await updateUser({
+      variables: { id, data: { name, email, homepage } },
+      refetchQueries: [{ query: me }]
+    })
+  }, 5000)
+
+  onImageChange = async ({ target: { files } }, s3Sign, updateUser) => {
+    const { id } = this.state
+    const file = files[0]
+    const filename = formatFilename('user', id, 'avatars', file.name)
+    const filetype = file.type
+    const res1 = await s3Sign({
+      variables: { filename, filetype }
+    })
+    const { requestURL, fileURL } = res1.data.s3Sign
+    if (!requestURL) {
+      return
+    }
+    await axios({
+      method: 'PUT',
+      url: requestURL,
+      data: file,
+      headers: {
+        'Content-Type': filetype
+      }
+    })
+    await updateUser({
+      variables: { id, data: { image: fileURL } },
+      refetchQueries: [{ query: me }]
+    })
+  }
 
   render() {
     const {
@@ -89,18 +134,24 @@ export default class MyProfile extends React.Component {
         </BannerTop>
         <MainContent>
           <Center>
-            <Mutation mutation={updateUser}>
-              {(updateUser, { loading }) => (
-                <ImageUpload image={image} onClick={() => this.file.click()}>
-                  <span>
-                    <PhotoCamera size={20} />
-                  </span>
-                  <input
-                    ref={el => (this.file = el)}
-                    type="file"
-                    onChange={e => this.onImageChange(e, updateUser)}
-                  />
-                </ImageUpload>
+            <Mutation mutation={s3Sign}>
+              {s3Sign => (
+                <Mutation mutation={updateUser}>
+                  {(updateUser, { loading }) => (
+                    <ImageUpload image={image} onClick={() => this.file.click()}>
+                      <span>
+                        <PhotoCamera size={20} />
+                      </span>
+                      <input
+                        ref={el => (this.file = el)}
+                        type="file"
+                        accept="image/*"
+                        multiple={false}
+                        onChange={e => this.onImageChange(e, s3Sign, updateUser)}
+                      />
+                    </ImageUpload>
+                  )}
+                </Mutation>
               )}
             </Mutation>
             <Mutation mutation={updateUser}>

@@ -3,6 +3,7 @@ const md5 = require('md5')
 const signToken = require('../middleware/signToken')
 const defaults = require('./utils/defaults')
 const validateSignup = require('./utils/validateSignup')
+const { getSignedUrl } = require('../services/aws')
 
 module.exports = {
   signup: async (_, args, ctx, info) => {
@@ -248,15 +249,14 @@ module.exports = {
         Bucket,
         Key: args.filename,
         Expires: 60,
-        ContentType: args.filetype,
-        ACL: 'public-read'
+        ContentType: args.filetype
       }
       const requestURL = await getSignedUrl('putObject', params)
       const fileURL = `https://${Bucket}.s3.amazonaws.com/${args.filename}`
       return { requestURL, fileURL }
     } catch (error) {
       console.log(error)
-      return null
+      return { requestURL: null, fileURL: null }
     }
   }
 }

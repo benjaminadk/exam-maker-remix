@@ -139,7 +139,7 @@ export const AvatarStyles = styled.div`
     height: 3rem;
     border-radius: 50%;
     border: 1px solid transparent;
-    background: ${props => props.theme.white};
+    background: ${props => props.theme.grey[0]};
     margin-left: 3rem;
     cursor: pointer;
   }
