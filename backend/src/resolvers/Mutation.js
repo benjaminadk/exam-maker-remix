@@ -4,6 +4,8 @@ const signToken = require('../middleware/signToken')
 const defaults = require('./utils/defaults')
 const validateSignup = require('./utils/validateSignup')
 const { getSignedUrl } = require('../services/aws')
+const QuestionFragment = require('../fragments/QuestionFragment')
+const formatAnswerLabel = require('./utils/formatAnswerLabel')
 
 module.exports = {
   signup: async (_, args, ctx, info) => {
@@ -176,12 +178,12 @@ module.exports = {
       } else if (type === 'question') {
         await ctx.prisma.updateQuestion(payload)
       } else if (type === 'choices') {
-        const question = await ctx.prisma.question({ id })
+        const question = await ctx.prisma.question({ id }).$fragment(QuestionFragment)
         await ctx.prisma.updateQuestion({
           where: { id },
           data: {
             choices: {
-              create: [{ label: '', text: '' }]
+              create: [{ label: formatAnswerLabel(question.choices.length), text: '' }]
             },
             answer: { set: question.answer.concat(false) }
           }
