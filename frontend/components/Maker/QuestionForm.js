@@ -80,6 +80,7 @@ export default ({ id, question }) => (
           answer={question.answer[i]}
           index={i}
           answers={question.answer}
+          variant={question.variant}
         />
       ))}
     </Center>

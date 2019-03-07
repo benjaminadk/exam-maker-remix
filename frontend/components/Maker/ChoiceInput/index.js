@@ -1,3 +1,4 @@
+import { withApollo } from 'react-apollo'
 import isequal from 'lodash.isequal'
 import debounce from 'lodash.debounce'
 import { ChoiceInputStyles } from '../styles/ChoiceInput'
@@ -5,8 +6,9 @@ import Check from './Check'
 import Text from './Text'
 import Delete from './Delete'
 
-export default class ChoiceInput extends React.Component {
+class ChoiceInput extends React.Component {
   state = {
+    id: '',
     text: '',
     answer: false
   }
@@ -21,6 +23,9 @@ export default class ChoiceInput extends React.Component {
       !isequal(prevProps.answer, this.props.answer)
     ) {
       this.setChoiceState()
+    }
+    if (prevProps.variant !== this.props.variant) {
+      console.log('question variant changed')
     }
   }
 
@@ -80,3 +85,5 @@ export default class ChoiceInput extends React.Component {
     )
   }
 }
+
+export default withApollo(ChoiceInput)
