@@ -85,20 +85,25 @@ class Exams extends React.Component {
   onDownloadExam = async (i, updateExam) => {
     const { exams } = this.state
     const exam = exams[i]
+    await updateExam({
+      variables: { id: exam.id, data: { downloads: exam.downloads + 1 } }
+    })
     const download = {
       id: exam.id,
-      author: exam.user.name,
+      author: {
+        id: exam.user.id,
+        name: exam.user.name,
+        image: exam.user.image
+      },
       title: exam.title,
       code: exam.code,
       pass: Number(exam.pass),
       time: Number(exam.time),
       image: exam.image,
       cover: exam.cover,
-      test: exam.test
+      test: exam.test,
+      createdAt: exam.createdAt
     }
-    await updateExam({
-      variables: { id: exam.id, data: { downloads: exam.downloads + 1 } }
-    })
     downloadExam(download)
   }
 
