@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 8080"
+    "dev": "next -p 8080",
+    "build": "next build",
+    "start": "next start",
+    "heroku-postbuild": "next build"
+  },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.1.0"
   },
   "keywords": [],
   "author": "benjaminadk",
