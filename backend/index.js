@@ -6,10 +6,10 @@ const { importSchema } = require('graphql-import')
 const cookieParser = require('cookie-parser')
 const http = require('http')
 
-const addUserIdToRequest = require('./middleware/addUserIdToRequest')
-const addUserToRequest = require('./middleware/addUserToRequest')
-const resolvers = require('./resolvers')
-const { prisma } = require('./generated')
+const addUserIdToRequest = require('./src/middleware/addUserIdToRequest')
+const addUserToRequest = require('./src/middleware/addUserToRequest')
+const resolvers = require('./src/resolvers')
+const { prisma } = require('./src/generated')
 
 const { NODE_ENV, FRONTEND_DEV, FRONTEND_PROD, PORT } = process.env
 const app = express()
