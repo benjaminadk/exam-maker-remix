@@ -47,6 +47,5 @@ server.applyMiddleware({ app, path, server, cors })
 server.installSubscriptionHandlers(httpServer)
 
 httpServer.listen(PORT, () => {
-  console.log(`server @ http://localhost:${PORT}${server.graphqlPath}`)
-  console.log(`subscriptions @ ws://localhost:${PORT}${server.subscriptionsPath}`)
+  console.log(`server up`)
 })
