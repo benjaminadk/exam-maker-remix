@@ -10,7 +10,10 @@ import SearchInput from './SearchInput'
 import Loading from './Loading'
 import downloadExam from '../../lib/downloadExam'
 
-const ExamsStyles = styled.div``
+const ExamsStyles = styled.div`
+  height: calc(100vh - 6rem);
+  overflow: auto;
+`
 
 const MainContent = styled.div`
   width: ${props => props.theme.maxWidth};

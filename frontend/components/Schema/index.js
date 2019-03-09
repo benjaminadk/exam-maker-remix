@@ -1,7 +1,21 @@
-import { SchemaStyles, MainContent, InfoBlock } from './styles'
+import styled from 'styled-components'
 import { BannerTop, BannerTitle } from '../Shared/Banner'
 import SchemaJSON from './SchemaJSON'
 import BasicCard from './BasicCard'
+
+const SchemaStyles = styled.div``
+
+const MainContent = styled.div`
+  width: ${props => props.theme.maxWidth};
+  display: grid;
+  grid-template-columns: 30% 70%;
+  margin: 3rem auto;
+`
+
+const InfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 export default class Schema extends React.Component {
   render() {
@@ -39,9 +53,8 @@ export default class Schema extends React.Component {
               content={
                 <div className="content">
                   The easiest way to create an exam is to use the online editor on this site. You
-                  can also create an exam with any text editor so long as it complies with the
-                  Exam.json schema outlined on this page. For more information, check out the
-                  Documentation.
+                  can also create an exam with any text editor so long as it complies with the JSON
+                  schema outlined on this page. For more information, check out the Documentation.
                 </div>
               }
             />

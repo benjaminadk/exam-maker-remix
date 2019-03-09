@@ -66,7 +66,7 @@ export default () => (
           heading="What is this?"
           text="Exam Maker is an online test creation tool designed to empower students, teachers and developers."
           buttonText="get started"
-          onClick={() => Router.push('/')}
+          onClick={() => Router.push('/maker')}
         />
         <Card
           heading="Exam Database"

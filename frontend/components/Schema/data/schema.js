@@ -1,11 +1,16 @@
 export default `{
   "published": true,
-  "author": "Julia McMann",
+  "author": {
+    "id": "12345",
+    "name": "Steven Avery",
+    "image": "http://www.example.com/image.png"
+  },
   "title": "Making a Murderer",
   "code": "000-000",
   "pass": 70,
   "time": 90,
-  "image": "http://www.image.com",
+  "image": "http://www.example.com/image.png",
+  "createdAt": "2019-03-09T21:29:20.995Z",
   "cover": [
     { "variant": 2, "text": "Demo Exam" },
     { "variant": 1, "text": "Making a Murderer Edition" },
@@ -30,7 +35,7 @@ export default `{
         { "variant": 1, "text": "Ken Kratz during his infamous press conference." },
         {
           "variant": 0,
-          "text": "https://www.image.com  "
+          "text": "https://www.example.com/image.png"
         }
       ]
     }

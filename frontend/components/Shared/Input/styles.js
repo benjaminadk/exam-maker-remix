@@ -13,6 +13,7 @@ export const InputStyles = styled.div`
     resize: none;
     overflow: hidden;
     padding: 0;
+    padding-bottom: 0.1rem;
     margin: 0;
   }
   .underline {

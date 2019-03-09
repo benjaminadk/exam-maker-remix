@@ -66,7 +66,7 @@ module.exports = {
 
   googleSignin: async (_, args, ctx, info) => {
     try {
-      const { googleID, ...rest } = args.data
+      const { googleID } = args.data
       const exists = await ctx.prisma.$exists.user({ googleID })
       if (exists) {
         let user = await ctx.prisma.user({ googleID })

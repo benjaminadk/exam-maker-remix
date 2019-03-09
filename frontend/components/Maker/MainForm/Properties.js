@@ -14,7 +14,7 @@ export default ({ id, title, description, code, time, pass, image, onChange }) =
     <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
       {(updateExam, { loading }) => (
         <Input
-          type="input"
+          type="text"
           width={300}
           label={loading ? 'Saving...' : 'Title'}
           value={title}
@@ -26,7 +26,7 @@ export default ({ id, title, description, code, time, pass, image, onChange }) =
     <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
       {(updateExam, { loading }) => (
         <Input
-          type="text"
+          type="textarea"
           width={300}
           label={loading ? 'Saving...' : 'Description'}
           value={description}
@@ -38,7 +38,7 @@ export default ({ id, title, description, code, time, pass, image, onChange }) =
     <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
       {(updateExam, { loading }) => (
         <Input
-          type="input"
+          type="text"
           width={300}
           label={loading ? 'Saving...' : 'Code'}
           hint="Certification Code e.g. 601-902"
@@ -77,7 +77,7 @@ export default ({ id, title, description, code, time, pass, image, onChange }) =
     <Mutation mutation={updateExam} refetchQueries={[{ query: examById, variables: { id } }]}>
       {(updateExam, { loading }) => (
         <Input
-          type="input"
+          type="text"
           width={300}
           label={loading ? 'Saving...' : 'Logo URL'}
           hint="Image with 1:1 size ratio"
