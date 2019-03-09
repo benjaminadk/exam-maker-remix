@@ -6,6 +6,7 @@ const validateSignup = require('./utils/validateSignup')
 const { getSignedUrl } = require('../services/aws')
 const QuestionFragment = require('../fragments/QuestionFragment')
 const formatAnswerLabel = require('./utils/formatAnswerLabel')
+const createPassword = require('./utils/createPassword')
 
 module.exports = {
   signup: async (_, args, ctx, info) => {
@@ -68,10 +69,11 @@ module.exports = {
       const { googleID, ...rest } = args.data
       const exists = await ctx.prisma.$exists.user({ googleID })
       if (exists) {
-        let user = await ctx.prisma.updateUser({ where: { googleID }, data: { ...rest } })
+        let user = await ctx.prisma.user({ googleID })
         signToken(ctx.res, user.id)
       } else {
-        let user = await ctx.prisma.createUser({ ...args.data })
+        const password = createPassword()
+        let user = await ctx.prisma.createUser({ ...args.data, password })
         signToken(ctx.res, user.id)
       }
       return { success: true }

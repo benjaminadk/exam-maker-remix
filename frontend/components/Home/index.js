@@ -4,6 +4,9 @@ import Card from './Card'
 import { RedButton } from '../Shared/RedButton'
 
 const HomeStyles = styled.div`
+  height: calc(100vh - 6rem);
+  display: grid;
+  grid-template-rows: 66% 34%;
   .yellow {
     background: ${props => props.theme.primary};
   }
@@ -14,7 +17,7 @@ const HomeStyles = styled.div`
 
 const BannerYellow = styled.div`
   max-width: ${props => props.theme.maxWidth};
-  height: 350px;
+  height: 100%;
   display: grid;
   grid-template-rows: 1fr auto 1fr;
   justify-items: center;
@@ -38,7 +41,7 @@ const ReadMoreButton = styled(RedButton)`
 
 const BannerBottom = styled.div`
   max-width: ${props => props.theme.maxWidth};
-  height: 250px;
+  height: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -75,9 +78,7 @@ export default () => (
           heading="Exam Simulator"
           text="Exam Simulator is a free and open source simulator and is available for Windows and MacOS."
           buttonText="download"
-          onClick={() =>
-            window.open('https://exam-simulator.gitbook.io/project/installation', '_blank')
-          }
+          onClick={() => window.open('https://exam-simulator.gitbook.io/exam-simulator/', '_blank')}
         />
       </BannerBottom>
     </div>
